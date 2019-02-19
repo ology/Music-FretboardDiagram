@@ -43,7 +43,7 @@ use Music::Chord::Namer 'chordname';
 =head1 DESCRIPTION
 
 A C<Music::FretboardDiagram> object draws fretboard chord diagrams including
-neck position and chord name annotations.
+neck position and chord name annotations for guitar, ukulele, banjo, etc.
 
 =begin html
 
