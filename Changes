@@ -1,6 +1,8 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.0200 2019-02-19 16:08:27
     - Allow note position values above the number of scale notes.
 
 0.0100 2019-02-19 15:06:29
