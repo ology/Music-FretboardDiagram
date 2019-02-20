@@ -364,7 +364,7 @@ sub draw {
             );
         }
         else {
-            my $temp = $self->fretboard->{$string}[$self->position + $note - 1];
+            my $temp = $self->fretboard->{$string}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
             push @chord, $temp;
             print "Dot at $note,$string = $temp\n" if $self->verbose;
 

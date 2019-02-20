@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Allow note position values above the number of scale notes.
+
+0.0100 2019-02-19 15:06:29
     - Added a link to the Autumn Leaves song chart to the eg program.
     - Moved repo from Music-GuitarChordDiagram.
 

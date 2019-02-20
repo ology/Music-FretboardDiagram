@@ -23,4 +23,27 @@ is $obj->verbose, 0, 'verbose';
 
 can_ok $obj, 'draw';
 
+my $note = 0;
+my $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+is $x, 'E', 'E';
+$note = 1;
+$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+is $x, 'F', 'F';
+
+$note = 0;
+$obj->position(13);
+$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+is $x, 'E', 'E';
+$note = 1;
+$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+is $x, 'F', 'F';
+
+$note = 0;
+$obj->position(25);
+$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+is $x, 'E', 'E';
+$note = 1;
+$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+is $x, 'F', 'F';
+
 done_testing();
