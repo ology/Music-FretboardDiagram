@@ -1,6 +1,8 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.0300 2019-02-19 19:11:39
     - Make double digits in the diagram position not overlap the grid.
     - Clean up isa syntax.
     - Add exception tests for bogus attribute values.
