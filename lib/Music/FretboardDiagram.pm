@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0202';
+our $VERSION = '0.0300';
 
 use Moo;
 use strictures 2;
@@ -108,7 +108,7 @@ Default: 1
 
 has position => (
     is      => 'rw',
-    isa     => sub { die "$_[0] is not a positive integer" unless $_[0] =~ /^[1-9]\d*$/ },
+    isa     => \&_positive_int,
     default => sub { 1 },
 );
 
@@ -124,7 +124,7 @@ Default: 6
 
 has strings => (
     is      => 'ro',
-    isa     => sub { die "$_[0] is not a positive integer" unless $_[0] =~ /^[1-9]\d*$/ },
+    isa     => \&_positive_int,
     default => sub { 6 },
 );
 
@@ -140,7 +140,7 @@ Default: 5
 
 has frets => (
     is      => 'ro',
-    isa     => sub { die "$_[0] is not a positive integer" unless $_[0] =~ /^[1-9]\d*$/ },
+    isa     => \&_positive_int,
     default => sub { 5 },
 );
 
@@ -156,7 +156,7 @@ Default: 30
 
 has size => (
     is      => 'ro',
-    isa     => sub { die "$_[0] is not a positive integer" unless $_[0] =~ /^[1-9]\d*$/ },
+    isa     => \&_positive_int,
     default => sub { 30 },
 );
 
@@ -396,6 +396,11 @@ sub draw {
     my $name = $self->outfile . '.' . $type;
     $i->write( type => $type, file => $name )
         or die "Can't save $name: ", $i->errstr;
+}
+
+sub _positive_int {
+    my ($arg) = @_;
+    die "$arg is not a positive integer" unless $arg =~ /^[1-9]\d*$/;
 }
 
 1;
