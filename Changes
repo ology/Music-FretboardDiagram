@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Make double digits in the diagram position not overlap the grid.
+
+0.0201 2019-02-19 17:49:36
     - Fix changelog to not display double entries.
 
 0.0200 2019-02-19 16:08:27
