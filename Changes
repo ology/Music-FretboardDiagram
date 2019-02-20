@@ -2,6 +2,8 @@ Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
     - Make double digits in the diagram position not overlap the grid.
+    - Clean up isa syntax.
+    - Add exception tests for bogus attribute values.
 
 0.0201 2019-02-19 17:49:36
     - Fix changelog to not display double entries.
