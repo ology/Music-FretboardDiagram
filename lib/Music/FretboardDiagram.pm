@@ -289,8 +289,8 @@ sub draw {
         xsize => $SPACE + $self->strings * $SPACE - $self->strings,
         ysize => $SPACE + $self->frets * $SPACE - $self->frets,
     );
-    my $font = Imager::Font->new( file => $self->font );
     $i->box( filled => 1, color => $WHITE );
+    my $font = Imager::Font->new( file => $self->font );
 
     # Draw the vertical string lines
     for my $string (0 .. $self->strings - 1) {
