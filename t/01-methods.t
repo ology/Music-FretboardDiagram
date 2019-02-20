@@ -3,10 +3,26 @@ use strict;
 use warnings;
 
 use Test::More;
+use Test::Exception;
 
 use_ok 'Music::FretboardDiagram';
 
-my $obj = Music::FretboardDiagram->new( chord => 'xxxxxx' );
+my $obj;
+
+throws_ok {
+    $obj = Music::FretboardDiagram->new( position => 'foo' )
+} qr/not a positive integer/, 'bogus position dies';
+throws_ok {
+    $obj = Music::FretboardDiagram->new( strings => 'foo' )
+} qr/not a positive integer/, 'bogus strings dies';
+throws_ok {
+    $obj = Music::FretboardDiagram->new( frets => 'foo' )
+} qr/not a positive integer/, 'bogus frets dies';
+throws_ok {
+    $obj = Music::FretboardDiagram->new( size => 'foo' )
+} qr/not a positive integer/, 'bogus size dies';
+
+$obj = Music::FretboardDiagram->new( chord => 'xxxxxx' );
 isa_ok $obj, 'Music::FretboardDiagram';
 
 is $obj->chord, 'xxxxxx', 'chord';
