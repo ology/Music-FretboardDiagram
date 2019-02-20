@@ -323,7 +323,7 @@ sub draw {
                 font  => $font,
                 text  => $self->position,
                 color => $BLACK,
-                x     => $SPACE / 2,
+                x     => $SPACE / 4,
                 y     => $SPACE * 2 + $SPACE / 4,
                 size  => $SPACE / 2,
                 aa    => 1,
