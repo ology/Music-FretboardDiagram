@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0300';
+our $VERSION = '0.0301';
 
 use Moo;
 use strictures 2;
@@ -290,6 +290,7 @@ sub draw {
         ysize => $SPACE + $self->frets * $SPACE - $self->frets,
     );
     $i->box( filled => 1, color => $WHITE );
+    warn 'WARNING: Font ', $self->font, " not found\n" unless -e $self->font;
     my $font = Imager::Font->new( file => $self->font );
 
     # Draw the vertical string lines

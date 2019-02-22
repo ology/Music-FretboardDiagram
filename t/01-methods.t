@@ -4,6 +4,7 @@ use warnings;
 
 use Test::More;
 use Test::Exception;
+use Test::Warn;
 
 use_ok 'Music::FretboardDiagram';
 
@@ -38,6 +39,13 @@ is scalar @{ $obj->fretboard->{1} }, 12, 'fretboard';
 is $obj->verbose, 0, 'verbose';
 
 can_ok $obj, 'draw';
+
+$obj = Music::FretboardDiagram->new(
+    chord => 'xxxxxx',
+    font  => 'foo',
+);
+
+warning_like { $obj->draw } qr/Font foo not found/, 'font not found';
 
 my $note = 0;
 my $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
