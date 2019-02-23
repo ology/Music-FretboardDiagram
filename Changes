@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Clean up code a bit.
 
 0.0400 2019-02-22 20:33:34
     - Allow any given image file type supported by Imager instead of PNG only.
