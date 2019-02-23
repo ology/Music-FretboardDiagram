@@ -374,6 +374,7 @@ sub draw {
         elsif ( $note =~ /[oO0]/ ) {
             my $temp = $self->fretboard->{$string}[0];
             push @chord, $temp;
+
             print "O at 0,$string = $temp\n" if $self->verbose;
 
             $i->string(
@@ -389,6 +390,7 @@ sub draw {
         else {
             my $temp = $self->fretboard->{$string}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
             push @chord, $temp;
+
             print "Dot at $note,$string = $temp\n" if $self->verbose;
 
             $i->circle(
