@@ -188,7 +188,7 @@ Default: png
 =cut
 
 has type => (
-    is      => 'rw',
+    is      => 'ro',
     default => sub { 'png' },
 );
 
