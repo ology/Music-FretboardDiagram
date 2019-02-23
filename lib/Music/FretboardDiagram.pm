@@ -59,9 +59,9 @@ neck position and chord name annotations for guitar, ukulele, banjo, etc.
   $dia->chord('xx0232');
   $chord = $dia->chord;
 
-A chord given in string format, where non-zero digits represent frets, C<x> (or
-C<X>) indicates a muted string and C<0> (or C<o> or C<O>) indicates an open
-string.  The default order of the strings is C<654321> from lowest to highest.
+A chord given as a string, where non-zero digits represent frets, C<x> (or C<X>)
+indicates a muted string and C<0> (or C<o> or C<O>) indicates an open string.
+The default order of the strings is C<654321> from lowest to highest.
 
 Examples:
 
@@ -267,6 +267,9 @@ Construct the B<fretboard> attribute from the B<tuning>.
 
 sub BUILD {
     my ( $self, $args ) = @_;
+
+    die 'Chord length and string length differ'
+        if $args->{chord} && length($args->{chord}) != $self->{strings};
 
     my @scale = qw/C Db D Eb E F Gb G Ab A Bb B/;
 
