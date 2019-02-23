@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Allow any given image file type supported by Imager instead of PNG only.
+
+0.0302 2019-02-22 19:29:18
     - Rollback!  Do not try to ->draw in the test.
 
 0.0301 2019-02-22 15:10:54

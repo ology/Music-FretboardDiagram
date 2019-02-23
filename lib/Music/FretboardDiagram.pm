@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0302';
+our $VERSION = '0.0400';
 
 use Moo;
 use strictures 2;
@@ -36,6 +36,7 @@ use Music::Chord::Namer 'chordname';
     outfile  => 'ukulele-chord',
     font     => '/path/to/TTF/font.ttf',
     tuning   => [qw/A E C G/],
+    type     => 'bmp',
     verbose  => 1,
   );
   $dia->draw;
@@ -44,9 +45,6 @@ use Music::Chord::Namer 'chordname';
 
 A C<Music::FretboardDiagram> object draws fretboard chord diagrams including
 neck position and chord name annotations for guitar, ukulele, banjo, etc.
-
-This module outputs PNG image files only.  So for instance, on Linux and Macs
-you will need the libpng-dev library.
 
 =begin html
 
@@ -168,7 +166,7 @@ has size => (
   $dia->outfile('chord-042');
   $outfile = $dia->outfile;
 
-The image file name minus the (PNG) extension.
+The image file name minus the extension.
 
 Default: chord-diagram
 
@@ -177,6 +175,21 @@ Default: chord-diagram
 has outfile => (
     is      => 'rw',
     default => sub { 'chord-diagram' },
+);
+
+=head2 type
+
+  $type = $dia->type;
+
+The image file extension.
+
+Default: png
+
+=cut
+
+has type => (
+    is      => 'rw',
+    default => sub { 'png' },
 );
 
 =head2 font
@@ -273,8 +286,7 @@ sub BUILD {
 
   $dia->draw;
 
-Render the requested chord diagram as a C<PNG> image.  (Other formats are not
-supported.)
+Render the requested chord diagram as an image file of B<type>.
 
 =cut
 
@@ -397,9 +409,8 @@ sub draw {
     );
 
     # Output the image
-    my $type = 'png';
-    my $name = $self->outfile . '.' . $type;
-    $i->write( type => $type, file => $name )
+    my $name = $self->outfile . '.' . $self->type;
+    $i->write( type => $self->type, file => $name )
         or die "Can't save $name: ", $i->errstr;
 }
 
