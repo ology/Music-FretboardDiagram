@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0301';
+our $VERSION = '0.0302';
 
 use Moo;
 use strictures 2;
@@ -44,6 +44,9 @@ use Music::Chord::Namer 'chordname';
 
 A C<Music::FretboardDiagram> object draws fretboard chord diagrams including
 neck position and chord name annotations for guitar, ukulele, banjo, etc.
+
+This module outputs PNG image files only.  So for instance, on Linux and Macs
+you will need the libpng-dev library.
 
 =begin html
 
@@ -270,7 +273,8 @@ sub BUILD {
 
   $dia->draw;
 
-Render the requested chord diagram as a PNG image.
+Render the requested chord diagram as a C<PNG> image.  (Other formats are not
+supported.)
 
 =cut
 

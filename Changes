@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Rollback!  Do not try to ->draw in the test.
+
+0.0301 2019-02-22 15:10:54
     - Warn in ->draw if font file is not found.
 
 0.0300 2019-02-19 19:11:39
