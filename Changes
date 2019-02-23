@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Adjust die message for chord length vs strings.
 
 0.0402 2019-02-22 21:31:22
     - Clean up code a bit.

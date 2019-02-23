@@ -268,7 +268,7 @@ Construct the B<fretboard> attribute from the B<tuning>.
 sub BUILD {
     my ( $self, $args ) = @_;
 
-    die 'Chord length and string length differ'
+    die 'chord length and string number differ'
         if $args->{chord} && length($args->{chord}) != $self->{strings};
 
     my @scale = qw/C Db D Eb E F Gb G Ab A Bb B/;
