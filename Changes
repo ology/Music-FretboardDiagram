@@ -1,7 +1,10 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.0600 2019-02-27 15:03:07
     - Fix the reversed strings/notes problem when horizontally diagramming.
+    - Improve verbose output.
 
 0.0500 2019-02-27 14:39:55
     - Adjust die message for chord length vs strings.
