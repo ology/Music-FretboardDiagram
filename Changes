@@ -1,6 +1,8 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.0700 2019-02-27 15:44:26
     - Add the showname attribute to show the computed chord name, a user defined string or not at all.
 
 0.0600 2019-02-27 15:03:07
