@@ -34,7 +34,9 @@ is $obj->strings, 6, 'strings';
 is $obj->frets, 5, 'frets';
 is $obj->size, 30, 'size';
 is $obj->outfile, 'chord-diagram', 'outfile';
+is $obj->type, 'png', 'type';
 like $obj->font, qr/\.ttf$/, 'font';
+is $obj->horiz, 0, 'horiz';
 is_deeply $obj->tuning, [qw/E B G D A E/], 'tuning';
 is keys %{ $obj->fretboard }, 6, 'fretboard';
 is scalar @{ $obj->fretboard->{1} }, 12, 'fretboard';
@@ -44,25 +46,25 @@ can_ok $obj, 'draw';
 
 my $note = 0;
 my $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
-is $x, 'E', 'E';
+is $x, 'E', 'open E';
 $note = 1;
 $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
-is $x, 'F', 'F';
+is $x, 'F', '1st fret F';
 
 $note = 0;
 $obj->position(13);
 $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
-is $x, 'E', 'E';
+is $x, 'E', '12th fret E';
 $note = 1;
 $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
-is $x, 'F', 'F';
+is $x, 'F', '13th fret F';
 
 $note = 0;
 $obj->position(25);
 $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
-is $x, 'E', 'E';
+is $x, 'E', '24th fret E';
 $note = 1;
 $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
-is $x, 'F', 'F';
+is $x, 'F', '25th fret F';
 
 done_testing();
