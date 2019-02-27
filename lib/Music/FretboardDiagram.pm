@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0600';
+our $VERSION = '0.0700';
 
 use Moo;
 use strictures 2;
@@ -38,6 +38,7 @@ use Music::Chord::Namer 'chordname';
     font     => '/path/to/TTF/font.ttf',
     tuning   => [qw/A E C G/],
     horiz    => 1,
+    showname => 0,
     verbose  => 1,
   );
   $dia->draw;
@@ -251,6 +252,22 @@ has fretboard => (
     init_arg => undef,
 );
 
+=head2 showname
+
+  $showname = $dia->showname;
+
+Show the chord name or not.  (Sometimes the computed chord name is not that
+accurate.)
+
+Default: 1
+
+=cut
+
+has showname => (
+    is      => 'ro',
+    default => sub { 1 },
+);
+
 =head2 verbose
 
   $verbose = $dia->verbose;
@@ -433,18 +450,20 @@ sub draw {
         $string--;
     }
 
-    # Print the chord name
-    my $chord_name = chordname(@chord);
-    print "Chord = $chord_name\n" if $self->verbose;
-    $i->string(
-        font  => $font,
-        text  => $chord_name,
-        color => $BLACK,
-        x     => $SPACE,
-        y     => $SPACE + $self->frets * $SPACE - $self->frets - $SPACE / 4,
-        size  => $SPACE / 2,
-        aa    => 1,
-    );
+    # Print the chord name if requested
+    if ( $self->showname ) {
+        my $chord_name = chordname(@chord);
+        print "Chord = $chord_name\n" if $self->verbose;
+        $i->string(
+            font  => $font,
+            text  => $chord_name,
+            color => $BLACK,
+            x     => $SPACE,
+            y     => $SPACE + $self->frets * $SPACE - $self->frets - $SPACE / 4,
+            size  => $SPACE / 2,
+            aa    => 1,
+        );
+    }
 
     $self->_output_image($i);
 }
@@ -564,18 +583,20 @@ sub _draw_horiz {
         $string++;
     }
 
-    # Print the chord name
-    my $chord_name = chordname(@chord);
-    print "Chord = $chord_name\n" if $self->verbose;
-    $i->string(
-        font  => $font,
-        text  => $chord_name,
-        color => $BLACK,
-        x     => $SPACE,
-        y     => $SPACE * 2 + $self->frets * $SPACE - $SPACE / 3,
-        size  => $SPACE / 2,
-        aa    => 1,
-    );
+    # Print the chord name if requested
+    if ( $self->showname ) {
+        my $chord_name = chordname(@chord);
+        print "Chord = $chord_name\n" if $self->verbose;
+        $i->string(
+            font  => $font,
+            text  => $chord_name,
+            color => $BLACK,
+            x     => $SPACE,
+            y     => $SPACE * 2 + $self->frets * $SPACE - $SPACE / 3,
+            size  => $SPACE / 2,
+            aa    => 1,
+        );
+    }
 
     $self->_output_image($i);
 }

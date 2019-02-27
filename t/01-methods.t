@@ -40,6 +40,7 @@ is $obj->horiz, 0, 'horiz';
 is_deeply $obj->tuning, [qw/E B G D A E/], 'tuning';
 is keys %{ $obj->fretboard }, 6, 'fretboard';
 is scalar @{ $obj->fretboard->{1} }, 12, 'fretboard';
+is $obj->showname, 1, 'showname';
 is $obj->verbose, 0, 'verbose';
 
 can_ok $obj, 'draw';
