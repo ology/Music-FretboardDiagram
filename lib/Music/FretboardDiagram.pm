@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0500';
+our $VERSION = '0.0600';
 
 use Moo;
 use strictures 2;
@@ -512,11 +512,11 @@ sub _draw_horiz {
     }
 
     # Draw the note/mute markers
-    my $string = $self->strings;
+    my $string = 1;
 
     for my $note ( split //, $self->chord ) {
         if ( $note =~ /[xX]/ ) {
-            print "X at 0,$string\n" if $self->verbose;
+            print "X at fret:0, string:$string\n" if $self->verbose;
 
             $i->string(
                 font  => $font,
@@ -529,10 +529,10 @@ sub _draw_horiz {
             );
         }
         elsif ( $note =~ /[oO0]/ ) {
-            my $temp = $self->fretboard->{$string}[0];
+            my $temp = $self->fretboard->{$self->strings - $string + 1}[0];
             push @chord, $temp;
 
-            print "O at 0,$string = $temp\n" if $self->verbose;
+            print "O at fret:0, string:$string = $temp\n" if $self->verbose;
 
             $i->string(
                 font  => $font,
@@ -545,10 +545,10 @@ sub _draw_horiz {
             );
         }
         else {
-            my $temp = $self->fretboard->{$string}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
+            my $temp = $self->fretboard->{$self->strings - $string + 1}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
             push @chord, $temp;
 
-            print "Dot at $note,$string = $temp\n" if $self->verbose;
+            print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
 
             $i->circle(
                 color => $BLACK,
@@ -558,14 +558,16 @@ sub _draw_horiz {
             );
         }
 
-        # Decrement the current string number
-        $string--;
+        # Increment the current string number
+        $string++;
     }
 
     # Print the chord name
+    my $chord_name = chordname(@chord);
+    print "Chord = $chord_name\n" if $self->verbose;
     $i->string(
         font  => $font,
-        text  => scalar(chordname(@chord)),
+        text  => $chord_name,
         color => $BLACK,
         x     => $SPACE,
         y     => $SPACE * 2 + $self->frets * $SPACE - $SPACE / 3,
