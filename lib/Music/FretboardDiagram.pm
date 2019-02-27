@@ -25,6 +25,7 @@ use Music::Chord::Namer 'chordname';
   $dia->chord('xx0232');
   $dia->position(5);
   $dia->outfile('mystery-chord');
+  $dia->showname('Xb'); # "X flat"
   $dia->draw;
 
   $dia = Music::FretboardDiagram->new(
@@ -38,7 +39,6 @@ use Music::Chord::Namer 'chordname';
     font     => '/path/to/TTF/font.ttf',
     tuning   => [qw/A E C G/],
     horiz    => 1,
-    showname => 0,
     verbose  => 1,
   );
   $dia->draw;
@@ -254,17 +254,20 @@ has fretboard => (
 
 =head2 showname
 
+  $dia->showname($chord_name);
   $showname = $dia->showname;
 
-Show the chord name or not.  (Sometimes the computed chord name is not that
-accurate.)
+Show the chord name or not.
+
+Sometimes the computed chord name is not that accurate.  In those cases set the
+B<showname> to a string of your choosing before drawing.
 
 Default: 1
 
 =cut
 
 has showname => (
-    is      => 'ro',
+    is      => 'rw',
     default => sub { 1 },
 );
 
@@ -452,7 +455,7 @@ sub draw {
 
     # Print the chord name if requested
     if ( $self->showname ) {
-        my $chord_name = chordname(@chord);
+        my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
         print "Chord = $chord_name\n" if $self->verbose;
         $i->string(
             font  => $font,
@@ -585,7 +588,7 @@ sub _draw_horiz {
 
     # Print the chord name if requested
     if ( $self->showname ) {
-        my $chord_name = chordname(@chord);
+        my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
         print "Chord = $chord_name\n" if $self->verbose;
         $i->string(
             font  => $font,
