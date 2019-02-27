@@ -595,6 +595,12 @@ sub _positive_int {
 1;
 __END__
 
+=encoding utf-8
+
+=head1 THANK YOU
+
+Paweł Świderski for the horizontal drawing suggestion
+
 =head1 SEE ALSO
 
 The F<eg/> files in this distribution
