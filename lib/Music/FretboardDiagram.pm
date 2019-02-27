@@ -434,9 +434,11 @@ sub draw {
     }
 
     # Print the chord name
+    my $chord_name = chordname(@chord);
+    print "Chord = $chord_name\n" if $self->verbose;
     $i->string(
         font  => $font,
-        text  => scalar(chordname(@chord)),
+        text  => $chord_name,
         color => $BLACK,
         x     => $SPACE,
         y     => $SPACE + $self->frets * $SPACE - $self->frets - $SPACE / 4,
