@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0402';
+our $VERSION = '0.0500';
 
 use Moo;
 use strictures 2;
@@ -34,9 +34,10 @@ use Music::Chord::Namer 'chordname';
     frets    => 6,
     size     => 25,
     outfile  => 'ukulele-chord',
+    type     => 'bmp',
     font     => '/path/to/TTF/font.ttf',
     tuning   => [qw/A E C G/],
-    type     => 'bmp',
+    horiz    => 1,
     verbose  => 1,
   );
   $dia->draw;
@@ -223,6 +224,20 @@ has tuning => (
     default => sub { [qw/E B G D A E/] },
 );
 
+=head2 horiz
+
+  $horiz = $dia->horiz;
+
+Draw the diagram horizontally.  That is, with the first string at the top and
+the 6th string at the bottom.  The frets are numbered from left to right.
+
+=cut
+
+has horiz => (
+    is      => 'ro',
+    default => sub { 0 },
+);
+
 =head2 fretboard
 
   $fretboard = $dia->fretboard;
@@ -300,6 +315,11 @@ Render the requested chord diagram as an image file of B<type>.
 
 sub draw {
     my ($self) = @_;
+
+    if ( $self->horiz ) {
+        $self->_draw_horiz;
+        return;
+    }
 
     my $WHITE = 'white';
     my $BLUE  = 'blue';
@@ -424,10 +444,143 @@ sub draw {
         aa    => 1,
     );
 
-    # Output the image
+    $self->_output_image($i);
+}
+
+sub _draw_horiz {
+    my ($self) = @_;
+
+    my $WHITE = 'white';
+    my $BLUE  = 'blue';
+    my $BLACK = 'black';
+    my $SPACE = $self->size;
+
+    my @chord;
+    my $font;
+
+    # Setup a new image
+    my $i = Imager->new(
+        ysize => $SPACE + $self->strings * $SPACE - $self->strings,
+        xsize => $SPACE + $self->frets * $SPACE - $self->frets,
+    );
+    $i->box( filled => 1, color => $WHITE );
+
+    if ( -e $self->font ) {
+        $font = Imager::Font->new( file => $self->font );
+    }
+    else {
+        warn 'WARNING: Font ', $self->font, " not found\n";
+    }
+
+    # Draw the vertical string lines
+    for my $string (0 .. $self->strings - 1) {
+        $i->line(
+            color => $BLUE,
+            y1    => $SPACE + $string * $SPACE,
+            x1    => $SPACE,
+            y2    => $SPACE + $string * $SPACE,
+            x2    => $SPACE + ($self->frets - 1) * $SPACE,
+            aa    => 1,
+            endp  => 1
+        );
+    }
+ 
+    # Draw the horizontal fret lines
+    for my $fret ( 0 .. $self->frets - 1 ) {
+        $i->line(
+            color => $BLUE,
+            y1    => $SPACE,
+            x1    => $SPACE + $fret * $SPACE,
+            y2    => $SPACE + ($self->strings - 1) * $SPACE,
+            x2    => $SPACE + $fret * $SPACE,
+            aa    => 1,
+            endp  => 1
+        );
+
+        # Indicate the neck position
+        if ( $fret == 1 ) {
+            $i->string(
+                font  => $font,
+                text  => $self->position,
+                color => $BLACK,
+                y     => $SPACE / 2 + $SPACE / 5,
+                x     => $SPACE * 2 - $SPACE / 5,
+                size  => $SPACE / 2,
+                aa    => 1,
+            );
+        }
+    }
+
+    # Draw the note/mute markers
+    my $string = $self->strings;
+
+    for my $note ( split //, $self->chord ) {
+        if ( $note =~ /[xX]/ ) {
+            print "X at 0,$string\n" if $self->verbose;
+
+            $i->string(
+                font  => $font,
+                text  => 'X',
+                color => $BLACK,
+                y     => $SPACE + ($self->strings - $string) * $SPACE + $SPACE / 4,
+                x     => $SPACE - $SPACE / 2,
+                size  => $SPACE / 2,
+                aa    => 1,
+            );
+        }
+        elsif ( $note =~ /[oO0]/ ) {
+            my $temp = $self->fretboard->{$string}[0];
+            push @chord, $temp;
+
+            print "O at 0,$string = $temp\n" if $self->verbose;
+
+            $i->string(
+                font  => $font,
+                text  => 'O',
+                color => $BLACK,
+                y     => $SPACE + ($self->strings - $string) * $SPACE + $SPACE / 4,
+                x     => $SPACE - $SPACE / 2,
+                size  => $SPACE / 2,
+                aa    => 1,
+            );
+        }
+        else {
+            my $temp = $self->fretboard->{$string}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
+            push @chord, $temp;
+
+            print "Dot at $note,$string = $temp\n" if $self->verbose;
+
+            $i->circle(
+                color => $BLACK,
+                r     => $SPACE / 5,
+                y     => $SPACE + ($self->strings - $string) * $SPACE,
+                x     => $SPACE + $SPACE / 2 + ($note - 1) * $SPACE,
+            );
+        }
+
+        # Decrement the current string number
+        $string--;
+    }
+
+    # Print the chord name
+    $i->string(
+        font  => $font,
+        text  => scalar(chordname(@chord)),
+        color => $BLACK,
+        x     => $SPACE,
+        y     => $SPACE * 2 + $self->frets * $SPACE - $SPACE / 3,
+        size  => $SPACE / 2,
+        aa    => 1,
+    );
+
+    $self->_output_image($i);
+}
+
+sub _output_image {
+    my ($self, $img) = @_;
     my $name = $self->outfile . '.' . $self->type;
-    $i->write( type => $self->type, file => $name )
-        or die "Can't save $name: ", $i->errstr;
+    $img->write( type => $self->type, file => $name )
+        or die "Can't save $name: ", $img->errstr;
 }
 
 sub _positive_int {
