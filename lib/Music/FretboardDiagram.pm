@@ -648,7 +648,7 @@ L<Music::Chord::Namer>
 
 Similar modules:
 
-L<GD::Tab::Guitar>
+L<GD::Tab::Guitar> and L<GD::Tab::Ukulele>
 
 L<Music::Image::Chord>
 
