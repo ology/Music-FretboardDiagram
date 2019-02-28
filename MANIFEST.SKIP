@@ -15,4 +15,4 @@ MYMETA.*
 ^.gitignore
 ^.svn\/
 ^Music-FretboardDiagram-
-^*\.png
+\.png$
