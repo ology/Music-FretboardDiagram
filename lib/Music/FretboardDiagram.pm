@@ -39,6 +39,7 @@ use Music::Chord::Namer 'chordname';
     font     => '/path/to/TTF/font.ttf',
     tuning   => [qw/A E C G/],
     horiz    => 1,
+    grid     => 'gray',
     verbose  => 1,
   );
   $dia->draw;
@@ -245,6 +246,19 @@ has horiz => (
     default => sub { 0 },
 );
 
+=head2 grid
+
+  $grid = $dia->grid;
+
+The diagram grid (strings and frets) color.
+
+=cut
+
+has grid => (
+    is      => 'ro',
+    default => sub { 'blue' },
+);
+
 =head2 fretboard
 
   $fretboard = $dia->fretboard;
@@ -351,8 +365,8 @@ sub draw {
     }
 
     my $WHITE = 'white';
-    my $BLUE  = 'blue';
     my $BLACK = 'black';
+    my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
     my @chord;
@@ -375,7 +389,7 @@ sub draw {
     # Draw the vertical string lines
     for my $string ( 0 .. $self->strings - 1 ) {
         $i->line(
-            color => $BLUE,
+            color => $GRID,
             x1    => $SPACE + $string * $SPACE,
             y1    => $SPACE,
             x2    => $SPACE + $string * $SPACE,
@@ -388,7 +402,7 @@ sub draw {
     # Draw the horizontal fret lines
     for my $fret ( 0 .. $self->frets - 1 ) {
         $i->line(
-            color => $BLUE,
+            color => $GRID,
             x1    => $SPACE,
             y1    => $SPACE + $fret * $SPACE,
             x2    => $SPACE + ($self->strings - 1) * $SPACE,
@@ -484,8 +498,8 @@ sub _draw_horiz {
     my ($self) = @_;
 
     my $WHITE = 'white';
-    my $BLUE  = 'blue';
     my $BLACK = 'black';
+    my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
     my @chord;
@@ -508,7 +522,7 @@ sub _draw_horiz {
     # Draw the horizontal string lines
     for my $string ( 0 .. $self->strings - 1 ) {
         $i->line(
-            color => $BLUE,
+            color => $GRID,
             y1    => $SPACE + $string * $SPACE,
             x1    => $SPACE,
             y2    => $SPACE + $string * $SPACE,
@@ -521,7 +535,7 @@ sub _draw_horiz {
     # Draw the vertical fret lines
     for my $fret ( 0 .. $self->frets - 1 ) {
         $i->line(
-            color => $BLUE,
+            color => $GRID,
             y1    => $SPACE,
             x1    => $SPACE + $fret * $SPACE,
             y2    => $SPACE + ($self->strings - 1) * $SPACE,
