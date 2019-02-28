@@ -3,6 +3,7 @@ Revision history for Music-FretboardDiagram
 {{$NEXT}}
     - Use the ->showname method in eg/autumn-leaves-shapes.
     - Fix chord name diagram position math.
+    - Make eg/ukulele use the module SYNOPSIS parameters.
 
 0.0700 2019-02-27 15:44:26
     - Add the showname attribute to show the computed chord name, a user defined string or not at all.
