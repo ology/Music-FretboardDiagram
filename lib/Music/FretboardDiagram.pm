@@ -236,7 +236,7 @@ has tuning => (
   $horiz = $dia->horiz;
 
 Draw the diagram horizontally.  That is, with the first string at the top and
-the 6th string at the bottom.  The frets are numbered from left to right.
+the 6th string at the bottom, and frets numbered from left to right.
 
 =cut
 
