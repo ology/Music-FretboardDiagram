@@ -261,6 +261,7 @@ has fretboard => (
 =head2 showname
 
   $dia->showname($chord_name);
+  $dia->showname(1); # Reset to computed names
   $showname = $dia->showname;
 
 Show a chord name or not.
