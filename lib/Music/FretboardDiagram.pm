@@ -512,8 +512,8 @@ sub _draw_horiz {
 
     # Setup a new image
     my $i = Imager->new(
-        ysize => $SPACE + $self->strings * $SPACE - $self->strings,
-        xsize => $SPACE + $self->frets * $SPACE - $self->frets,
+        ysize => $SPACE + $self->strings * $SPACE,
+        xsize => $SPACE + $self->frets * $SPACE,
     );
     $i->box( filled => 1, color => $WHITE );
 
