@@ -108,7 +108,8 @@ has chord => (
   $position = $dia->position;
 
 The neck position of a chord to be diagrammed.  This number is rendered to the
-left of the first fret.
+left of the first fret in vertical mode.  When drawing horizontally, the
+position is rendered above the first fret.
 
 Default: 1
 
@@ -262,7 +263,7 @@ has fretboard => (
   $dia->showname($chord_name);
   $showname = $dia->showname;
 
-Show the chord name or not.
+Show a chord name or not.
 
 Sometimes the computed chord name is not that accurate.  In those cases set the
 B<showname> to a string of your choosing before drawing.
@@ -369,7 +370,7 @@ sub draw {
     }
 
     # Draw the vertical string lines
-    for my $string (0 .. $self->strings - 1) {
+    for my $string ( 0 .. $self->strings - 1 ) {
         $i->line(
             color => $BLUE,
             x1    => $SPACE + $string * $SPACE,
@@ -502,7 +503,7 @@ sub _draw_horiz {
     }
 
     # Draw the vertical string lines
-    for my $string (0 .. $self->strings - 1) {
+    for my $string ( 0 .. $self->strings - 1 ) {
         $i->line(
             color => $BLUE,
             y1    => $SPACE + $string * $SPACE,
