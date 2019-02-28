@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.1000';
+our $VERSION = '0.1001';
 
 use Moo;
 use strictures 2;
@@ -430,27 +430,7 @@ sub draw {
             );
         }
 
-        if (
-            ( $self->position + $fret == 3 )
-            ||
-            ( $self->position + $fret == 5 )
-            ||
-            ( $self->position + $fret == 7 )
-            ||
-            ( $self->position + $fret == 9 )
-            ||
-            ( $self->position + $fret == 12 )
-            ||
-            ( $self->position + $fret == 15 )
-            ||
-            ( $self->position + $fret == 17 )
-            ||
-            ( $self->position + $fret == 19 )
-            ||
-            ( $self->position + $fret == 21 )
-            ||
-            ( $self->position + $fret == 24 )
-        ) {
+        if ( $self->_fret_match($fret) ) {
             $i->circle(
                 color => $GRAY,
                 r     => $SPACE / 8,
@@ -593,27 +573,7 @@ sub _draw_horiz {
             );
         }
 
-        if (
-            ( $self->position + $fret == 3 )
-            ||
-            ( $self->position + $fret == 5 )
-            ||
-            ( $self->position + $fret == 7 )
-            ||
-            ( $self->position + $fret == 9 )
-            ||
-            ( $self->position + $fret == 12 )
-            ||
-            ( $self->position + $fret == 15 )
-            ||
-            ( $self->position + $fret == 17 )
-            ||
-            ( $self->position + $fret == 19 )
-            ||
-            ( $self->position + $fret == 21 )
-            ||
-            ( $self->position + $fret == 24 )
-        ) {
+        if ( $self->_fret_match($fret) ) {
             $i->circle(
                 color => $GRAY,
                 r     => $SPACE / 8,
@@ -690,6 +650,30 @@ sub _draw_horiz {
     }
 
     $self->_output_image($i);
+}
+
+sub _fret_match {
+    my ($self, $fret) = @_;
+    return
+        ( $self->position + $fret == 3 )
+        ||
+        ( $self->position + $fret == 5 )
+        ||
+        ( $self->position + $fret == 7 )
+        ||
+        ( $self->position + $fret == 9 )
+        ||
+        ( $self->position + $fret == 12 )
+        ||
+        ( $self->position + $fret == 15 )
+        ||
+        ( $self->position + $fret == 17 )
+        ||
+        ( $self->position + $fret == 19 )
+        ||
+        ( $self->position + $fret == 21 )
+        ||
+        ( $self->position + $fret == 24 );
 }
 
 sub _output_image {
