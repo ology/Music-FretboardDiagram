@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0900';
+our $VERSION = '0.1000';
 
 use Moo;
 use strictures 2;
@@ -626,7 +626,7 @@ sub _draw_horiz {
     # Draw the note/mute markers
     my $string = 1;
 
-    for my $note ( split //, $self->chord ) {
+    for my $note ( reverse split //, $self->chord ) {
         if ( $note =~ /[xX]/ ) {
             print "X at fret:0, string:$string\n" if $self->verbose;
 
@@ -634,15 +634,15 @@ sub _draw_horiz {
                 font  => $font,
                 text  => 'X',
                 color => $BLACK,
-                y     => $SPACE + ($self->strings - $string) * $SPACE + $SPACE / 4,
+                y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
                 x     => $SPACE - $SPACE / 2,
                 size  => $SPACE / 2,
                 aa    => 1,
             );
         }
         elsif ( $note =~ /[oO0]/ ) {
-            my $temp = $self->fretboard->{$self->strings - $string + 1}[0];
-            push @chord, $temp;
+            my $temp = $self->fretboard->{$string}[0];
+            unshift @chord, $temp;
 
             print "O at fret:0, string:$string = $temp\n" if $self->verbose;
 
@@ -650,22 +650,22 @@ sub _draw_horiz {
                 font  => $font,
                 text  => 'O',
                 color => $BLACK,
-                y     => $SPACE + ($self->strings - $string) * $SPACE + $SPACE / 4,
+                y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
                 x     => $SPACE - $SPACE / 2,
                 size  => $SPACE / 2,
                 aa    => 1,
             );
         }
         else {
-            my $temp = $self->fretboard->{$self->strings - $string + 1}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
-            push @chord, $temp;
+            my $temp = $self->fretboard->{$string}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
+            unshift @chord, $temp;
 
             print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
 
             $i->circle(
                 color => $BLACK,
                 r     => $SPACE / 5,
-                y     => $SPACE + ($self->strings - $string) * $SPACE,
+                y     => $SPACE + ($string - 1) * $SPACE,
                 x     => $SPACE + $SPACE / 2 + ($note - 1) * $SPACE,
             );
         }
