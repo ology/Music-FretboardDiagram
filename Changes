@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Draw neck position dots as on a real fretboard.
 
 0.0802 2019-02-28 00:49:02
     - Adjust image dimensions slightly.
