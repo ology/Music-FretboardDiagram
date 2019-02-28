@@ -37,6 +37,7 @@ is $obj->outfile, 'chord-diagram', 'outfile';
 is $obj->type, 'png', 'type';
 like $obj->font, qr/\.ttf$/, 'font';
 is $obj->horiz, 0, 'horiz';
+is $obj->grid, 'blue', 'grid';
 is_deeply $obj->tuning, [qw/E B G D A E/], 'tuning';
 is keys %{ $obj->fretboard }, 6, 'fretboard';
 is scalar @{ $obj->fretboard->{1} }, 12, 'fretboard';
