@@ -262,12 +262,14 @@ has fretboard => (
 
   $dia->showname('Xb dim');
   $dia->showname(1); # Reset to computed names
+  $dia->showname(0); # Do not show chord names
   $showname = $dia->showname;
 
 Show a chord name or not.
 
-Sometimes the computed chord name is not that accurate.  In those cases set the
-B<showname> to a string of your choosing before drawing.
+Sometimes the computed chord name is not that accurate or desired.  In those
+cases either set the B<showname> to a string of your choosing before drawing, or
+to C<0> for no chord name.
 
 Default: 1
 
