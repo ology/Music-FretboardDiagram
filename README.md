@@ -1,10 +1,10 @@
 # Music-FretboardDiagram
 Draw Fretboard Chord Diagrams
 
-Guitar:
+Vertical guitar:
 
 ![Chord Diagram](https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/chord-diagram.png)
 
-Ukulele:
+Horizontal ukulele:
 
 ![Chord Diagram](https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/ukulele.png)
