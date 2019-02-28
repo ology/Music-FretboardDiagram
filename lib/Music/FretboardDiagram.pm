@@ -252,6 +252,8 @@ has horiz => (
 
 The diagram grid (strings and frets) color.
 
+Default: blue
+
 =cut
 
 has grid => (
