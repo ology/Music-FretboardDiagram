@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Allow the grid (strings and frets) color to be user defined.
+
+0.0703 2019-02-27 21:03:45
     - Improve documentation ever so slightly.
 
 0.0702 2019-02-27 19:28:51
