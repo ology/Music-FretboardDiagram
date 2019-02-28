@@ -379,8 +379,8 @@ sub draw {
 
     # Setup a new image
     my $i = Imager->new(
-        xsize => $SPACE + $self->strings * $SPACE - $self->strings,
-        ysize => $SPACE + $self->frets * $SPACE - $self->frets,
+        xsize => $SPACE + $self->strings * $SPACE,
+        ysize => $SPACE + $self->frets * $SPACE,
     );
     $i->box( filled => 1, color => $WHITE );
 
