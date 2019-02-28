@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0701';
+our $VERSION = '0.0702';
 
 use Moo;
 use strictures 2;
@@ -48,9 +48,14 @@ use Music::Chord::Namer 'chordname';
 A C<Music::FretboardDiagram> object draws fretboard chord diagrams including
 neck position and chord name annotations for guitar, ukulele, banjo, etc.
 
+Below are examples of a vertical guitar diagram and a horizontal ukulele diagram:
+
 =begin html
 
-<br><img src="https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/chord-diagram.png"><br>
+<br>
+<img src="https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/chord-diagram.png">
+<img src="https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/ukulele.png">
+<br>
 
 =end html
 
