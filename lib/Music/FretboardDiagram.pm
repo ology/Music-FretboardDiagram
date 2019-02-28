@@ -260,7 +260,7 @@ has fretboard => (
 
 =head2 showname
 
-  $dia->showname($chord_name);
+  $dia->showname('Xb dim');
   $dia->showname(1); # Reset to computed names
   $showname = $dia->showname;
 
