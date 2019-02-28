@@ -489,7 +489,7 @@ sub draw {
             text  => $chord_name,
             color => $BLACK,
             x     => $SPACE,
-            y     => $self->strings * $SPACE - $SPACE / 3,
+            y     => ($self->frets + 1) * $SPACE - $SPACE / 3,
             size  => $SPACE / 2,
             aa    => 1,
         );
