@@ -366,7 +366,6 @@ sub draw {
 
     my $WHITE = 'white';
     my $BLACK = 'black';
-    my $GRAY  = 'gray';
     my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
@@ -424,36 +423,6 @@ sub draw {
                 aa    => 1,
             );
         }
-
-        if (
-            ( $self->position <= 3 && $self->position + $fret - 1 == 3 )
-            ||
-            ( $self->position <= 5 && $self->position + $fret - 1 == 5 )
-            ||
-            ( $self->position <= 7 && $self->position + $fret - 1 == 7 )
-            ||
-            ( $self->position <= 9 && $self->position + $fret - 1 == 9 )
-            ||
-            ( $self->position <= 12 && $self->position + $fret - 1 == 12 )
-            ||
-            ( $self->position <= 15 && $self->position + $fret - 1 == 15 )
-            ||
-            ( $self->position <= 17 && $self->position + $fret - 1 == 17 )
-            ||
-            ( $self->position <= 19 && $self->position + $fret - 1 == 19 )
-            ||
-            ( $self->position <= 21 && $self->position + $fret - 1 == 21 )
-            ||
-            ( $self->position <= 24 && $self->position + $fret - 1 == 24 )
-        ) {
-            $i->circle(
-                color => $GRAY,
-                r     => $SPACE / 8,
-                x     => $SPACE * $self->strings / 2 + $SPACE / 2,
-                y     => $SPACE * $self->frets / 2 + $SPACE * ($fret - 2),
-            );
-        }
-
     }
 
     # Draw the note/mute markers
@@ -530,7 +499,6 @@ sub _draw_horiz {
 
     my $WHITE = 'white';
     my $BLACK = 'black';
-    my $GRAY  = 'gray';
     my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
@@ -586,35 +554,6 @@ sub _draw_horiz {
                 x     => $SPACE * 2 - $SPACE / 5,
                 size  => $SPACE / 2,
                 aa    => 1,
-            );
-        }
-
-        if (
-            ( $self->position <= 3 && $self->position + $fret - 1 == 3 )
-            ||
-            ( $self->position <= 5 && $self->position + $fret - 1 == 5 )
-            ||
-            ( $self->position <= 7 && $self->position + $fret - 1 == 7 )
-            ||
-            ( $self->position <= 9 && $self->position + $fret - 1 == 9 )
-            ||
-            ( $self->position <= 12 && $self->position + $fret - 1 == 12 )
-            ||
-            ( $self->position <= 15 && $self->position + $fret - 1 == 15 )
-            ||
-            ( $self->position <= 17 && $self->position + $fret - 1 == 17 )
-            ||
-            ( $self->position <= 19 && $self->position + $fret - 1 == 19 )
-            ||
-            ( $self->position <= 21 && $self->position + $fret - 1 == 21 )
-            ||
-            ( $self->position <= 24 && $self->position + $fret - 1 == 24 )
-        ) {
-            $i->circle(
-                color => $GRAY,
-                r     => $SPACE / 8,
-                y     => $SPACE * $self->strings / 2 + $SPACE / 2,
-                x     => $SPACE * $self->frets / 2 + $SPACE * ($fret - 2),
             );
         }
     }

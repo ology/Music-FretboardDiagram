@@ -2,7 +2,6 @@ Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
     - Allow the grid (strings and frets) color to be user defined.
-    - Draw gray neck position dots on the diagram.
 
 0.0703 2019-02-27 21:03:45
     - Improve documentation ever so slightly.
