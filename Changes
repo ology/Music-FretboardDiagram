@@ -1,7 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
-    - Add another image (horizontal ukulele) to the POD.
+    - Improve documentation.
 
 0.0701 2019-02-27 18:25:10
     - Use the ->showname method in eg/autumn-leaves-shapes.
