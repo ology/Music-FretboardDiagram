@@ -503,7 +503,7 @@ sub _draw_horiz {
         warn 'WARNING: Font ', $self->font, " not found\n";
     }
 
-    # Draw the vertical string lines
+    # Draw the horizontal string lines
     for my $string ( 0 .. $self->strings - 1 ) {
         $i->line(
             color => $BLUE,
@@ -516,7 +516,7 @@ sub _draw_horiz {
         );
     }
  
-    # Draw the horizontal fret lines
+    # Draw the vertical fret lines
     for my $fret ( 0 .. $self->frets - 1 ) {
         $i->line(
             color => $BLUE,
