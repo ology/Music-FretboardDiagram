@@ -239,6 +239,8 @@ has tuning => (
 Draw the diagram horizontally.  That is, with the first string at the top and
 the 6th string at the bottom, and frets numbered from left to right.
 
+Default: 0
+
 =cut
 
 has horiz => (
