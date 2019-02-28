@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0802';
+our $VERSION = '0.0900';
 
 use Moo;
 use strictures 2;
@@ -371,6 +371,7 @@ sub draw {
 
     my $WHITE = 'white';
     my $BLACK = 'black';
+    my $GRAY  = 'gray';
     my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
@@ -427,6 +428,35 @@ sub draw {
                 size  => $SPACE / 2,
                 aa    => 1,
             );
+        }
+
+        if (
+            ( $self->position + $fret == 3 )
+            ||
+            ( $self->position + $fret == 5 )
+            ||
+            ( $self->position + $fret == 7 )
+            ||
+            ( $self->position + $fret == 9 )
+            ||
+            ( $self->position + $fret == 12 )
+            ||
+            ( $self->position + $fret == 15 )
+            ||
+            ( $self->position + $fret == 17 )
+            ||
+            ( $self->position + $fret == 19 )
+            ||
+            ( $self->position + $fret == 21 )
+            ||
+            ( $self->position + $fret == 24 )
+        ) {
+            $i->circle(
+                color => $GRAY,
+                r     => $SPACE / 8,
+                x     => $SPACE * $self->strings / 2 + $SPACE / 2,
+                y     => $SPACE + $fret * $SPACE + $SPACE / 2,
+            ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $self->frets );
         }
     }
 
@@ -504,6 +534,7 @@ sub _draw_horiz {
 
     my $WHITE = 'white';
     my $BLACK = 'black';
+    my $GRAY  = 'gray';
     my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
@@ -560,6 +591,35 @@ sub _draw_horiz {
                 size  => $SPACE / 2,
                 aa    => 1,
             );
+        }
+
+        if (
+            ( $self->position + $fret == 3 )
+            ||
+            ( $self->position + $fret == 5 )
+            ||
+            ( $self->position + $fret == 7 )
+            ||
+            ( $self->position + $fret == 9 )
+            ||
+            ( $self->position + $fret == 12 )
+            ||
+            ( $self->position + $fret == 15 )
+            ||
+            ( $self->position + $fret == 17 )
+            ||
+            ( $self->position + $fret == 19 )
+            ||
+            ( $self->position + $fret == 21 )
+            ||
+            ( $self->position + $fret == 24 )
+        ) {
+            $i->circle(
+                color => $GRAY,
+                r     => $SPACE / 8,
+                y     => $SPACE * $self->strings / 2 + $SPACE / 2,
+                x     => $SPACE + $fret * $SPACE + $SPACE / 2,
+            ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $self->frets );
         }
     }
 
