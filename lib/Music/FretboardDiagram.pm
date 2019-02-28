@@ -267,7 +267,8 @@ has grid => (
 
   $fretboard = $dia->fretboard;
 
-A hashref of the string notes.  This is a computed attribute.
+A hashref of the string notes.  This is a computed attribute based on the given
+B<tuning>.
 
 =cut
 
