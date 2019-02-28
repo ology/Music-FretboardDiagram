@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.0700';
+our $VERSION = '0.0701';
 
 use Moo;
 use strictures 2;
@@ -462,7 +462,7 @@ sub draw {
             text  => $chord_name,
             color => $BLACK,
             x     => $SPACE,
-            y     => $SPACE + $self->frets * $SPACE - $self->frets - $SPACE / 4,
+            y     => $self->strings * $SPACE - $SPACE / 3,
             size  => $SPACE / 2,
             aa    => 1,
         );
@@ -595,7 +595,7 @@ sub _draw_horiz {
             text  => $chord_name,
             color => $BLACK,
             x     => $SPACE,
-            y     => $SPACE * 2 + $self->frets * $SPACE - $SPACE / 3,
+            y     => ($self->strings + 1) * $SPACE - $SPACE / 3,
             size  => $SPACE / 2,
             aa    => 1,
         );
