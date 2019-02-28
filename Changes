@@ -1,6 +1,8 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.0801 2019-02-27 23:54:00
     - Fix chord name position for vertical drawing.
 
 0.0800 2019-02-27 23:21:06
