@@ -336,7 +336,7 @@ sub BUILD {
 
     my @scale = qw/C Db D Eb E F Gb G Ab A Bb B/;
 
-    # Make a scale position index corresponding with the given tuning
+    # Make a scale position index corresponding to the given tuning
     my @index = map { my $t = $_; first_index { $t eq $_ } @scale } @{ $self->tuning };
 
     my %notes;
