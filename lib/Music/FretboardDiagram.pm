@@ -79,7 +79,7 @@ Examples:
   G: 320003
   A: x02220
   B: x24442
- 
+
   Cm: xx5543
   Dm: xx0231
   Em: 022000
@@ -87,7 +87,7 @@ Examples:
   Gm: xx5333
   Am: x02210
   Bm: x24432
- 
+
   C7: x32310
   D7: xx0212
   E7: 020100
@@ -338,7 +338,7 @@ sub BUILD {
 
   $dia->draw;
 
-Render the requested chord diagram as an image file of B<type>.
+Render the requested chord diagram as an image file of the given B<type>.
 
 =cut
 
