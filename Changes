@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Fix chord name position for vertical drawing.
+
+0.0800 2019-02-27 23:21:06
     - Allow the grid (strings and frets) color to be user defined.
     - Improve documentation a bit.
 
