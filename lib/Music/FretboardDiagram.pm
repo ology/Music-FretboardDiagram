@@ -343,7 +343,7 @@ sub BUILD {
 
     my $string = 0;
     for my $i ( @index ) {
-        # Make a scale note list for each string
+        # Make a scale note list for the string
         $notes{++$string} = [ map { $scale[ ($i + $_) % @scale ] } 0 .. @scale - 1 ];
     }
 
