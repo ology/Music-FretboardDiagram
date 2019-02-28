@@ -341,13 +341,10 @@ sub BUILD {
 
     my %notes;
 
-    my $n = 0;
-
+    my $string = 0;
     for my $i ( @index ) {
-        $n++;
-
         # Make a scale note list for each string
-        $notes{$n} = [ map { $scale[ ($i + $_) % @scale ] } 0 .. @scale - 1 ];
+        $notes{++$string} = [ map { $scale[ ($i + $_) % @scale ] } 0 .. @scale - 1 ];
     }
 
     $self->{fretboard} = \%notes;
