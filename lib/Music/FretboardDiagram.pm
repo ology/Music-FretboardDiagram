@@ -717,7 +717,7 @@ __END__
 
 =head1 THANK YOU
 
-Paweł Świderski for the horizontal drawing suggestion
+Paweł Świderski for the horizontal drawing and webservice suggestions
 
 =head1 SEE ALSO
 
