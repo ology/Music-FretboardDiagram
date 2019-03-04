@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.1002';
+our $VERSION = '0.1100';
 
 use Moo;
 use strictures 2;
@@ -39,6 +39,7 @@ use Music::Chord::Namer 'chordname';
     font     => '/path/to/TTF/font.ttf',
     tuning   => [qw/A E C G/],
     horiz    => 1,
+    image    => 1,
     grid     => 'gray',
     verbose  => 1,
   );
@@ -248,6 +249,21 @@ has horiz => (
     default => sub { 0 },
 );
 
+=head2 image
+
+  $image = $dia->image;
+
+Return the image from the B<draw> method instead of writing to a file.
+
+Default: 0
+
+=cut
+
+has image => (
+    is      => 'ro',
+    default => sub { 0 },
+);
+
 =head2 grid
 
   $grid = $dia->grid;
@@ -362,8 +378,7 @@ sub draw {
     my ($self) = @_;
 
     if ( $self->horiz ) {
-        $self->_draw_horiz;
-        return;
+        return $self->_draw_horiz;
     }
 
     my $WHITE = 'white';
@@ -503,7 +518,12 @@ sub draw {
         );
     }
 
-    $self->_output_image($i);
+    if ( $self->image ) {
+        return $i;
+    }
+    else {
+        $self->_output_image($i);
+    }
 }
 
 sub _draw_horiz {
@@ -646,7 +666,12 @@ sub _draw_horiz {
         );
     }
 
-    $self->_output_image($i);
+    if ( $self->image ) {
+        return $i;
+    }
+    else {
+        $self->_output_image($i);
+    }
 }
 
 sub _fret_match {

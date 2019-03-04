@@ -3,8 +3,9 @@
 use Mojolicious::Lite;
 use Mojo::File;
 
+use lib '/Users/gene/sandbox/Music-FretboardDiagram/lib';
 use Music::FretboardDiagram;
-use MIME::Base64;
+use Imager;
 
 get '/:chord/:position' => sub {
     my $c = shift;
@@ -14,30 +15,16 @@ get '/:chord/:position' => sub {
         position => $c->param('position'),
         frets    => 6,
         horiz    => 1,
+        image    => 1,
         font     => '/opt/X11/share/fonts/TTF/VeraMono.ttf',
     );
-    $dia->draw;
+    my $i = $dia->draw;
 
-    my $mojo_file = Mojo::File->new('chord-diagram.png');
-    my $raw_string = $mojo_file->slurp;
-    my $image = sprintf 'data:image/png;base64,%s', encode_base64( $raw_string, '' );
+    my $data;
+    $i->write( data => \$data, type => 'png' )
+        or die "Can't write to memory: ", $i->errstr;
 
-    $c->stash( image => $image );
-
-    $c->render( template => 'index' );
+    $c->render( data => $data, format => 'png' );
 };
 
 app->start;
-__DATA__
-
-@@ index.html.ep
-% layout 'default';
-% title 'Chord Diagram';
-<img src="<%= $image %>"/>
-
-@@ layouts/default.html.ep
-<!DOCTYPE html>
-<html>
-  <head><title><%= title %></title></head>
-  <body><%= content %></body>
-</html>
