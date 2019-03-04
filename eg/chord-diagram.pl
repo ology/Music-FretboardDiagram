@@ -3,7 +3,6 @@
 use Mojolicious::Lite;
 use Mojo::File;
 
-use lib '/Users/gene/sandbox/Music-FretboardDiagram/lib';
 use Music::FretboardDiagram;
 use Imager;
 
