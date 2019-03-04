@@ -3,7 +3,6 @@
 use Mojolicious::Lite;
 use Mojo::File;
 
-use lib $ENV{HOME} . '/sandbox/Music-FretboardDiagram/lib';
 use Music::FretboardDiagram;
 use MIME::Base64;
 
