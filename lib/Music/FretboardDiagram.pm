@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.1101';
+our $VERSION = '0.1102';
 
 use Moo;
 use strictures 2;
@@ -486,7 +486,7 @@ sub draw {
             );
         }
         else {
-            my $temp = $self->fretboard->{$string}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
+            my $temp = $self->_note_at($string, $note);
             push @chord, $temp;
 
             print "Dot at $note,$string = $temp\n" if $self->verbose;
@@ -634,7 +634,7 @@ sub _draw_horiz {
             );
         }
         else {
-            my $temp = $self->fretboard->{$string}[ ($self->position + $note - 1) % @{ $self->fretboard->{1} } ];
+            my $temp = $self->_note_at($string, $note);
             unshift @chord, $temp;
 
             print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
@@ -696,6 +696,11 @@ sub _fret_match {
         ( $self->position + $fret == 21 )
         ||
         ( $self->position + $fret == 24 );
+}
+
+sub _note_at {
+    my ($self, $string, $n) = @_;
+    return $self->fretboard->{$string}[ ($self->position + $n - 1) % @{ $self->fretboard->{1} } ];
 }
 
 sub _output_image {

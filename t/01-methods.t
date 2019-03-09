@@ -47,26 +47,26 @@ is $obj->verbose, 0, 'verbose';
 can_ok $obj, 'draw';
 
 my $note = 0;
-my $x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+my $x = $obj->_note_at(1, $note);
 is $x, 'E', 'open E';
 $note = 1;
-$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+$x = $obj->_note_at(1, $note);
 is $x, 'F', '1st fret F';
 
 $note = 0;
 $obj->position(13);
-$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+$x = $obj->_note_at(1, $note);
 is $x, 'E', '12th fret E';
 $note = 1;
-$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+$x = $obj->_note_at(1, $note);
 is $x, 'F', '13th fret F';
 
 $note = 0;
 $obj->position(25);
-$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+$x = $obj->_note_at(1, $note);
 is $x, 'E', '24th fret E';
 $note = 1;
-$x = $obj->fretboard->{1}[ ($obj->position + $note - 1) % @{ $obj->fretboard->{1} } ];
+$x = $obj->_note_at(1, $note);
 is $x, 'F', '25th fret F';
 
 done_testing();
