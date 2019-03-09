@@ -20,10 +20,10 @@ get '/:chord/:position' => sub {
     my $i = $dia->draw;
 
     my $data;
-    $i->write( data => \$data, type => 'png' )
+    $i->write( data => \$data, type => $dia->type )
         or die "Can't write to memory: ", $i->errstr;
 
-    $c->render( data => $data, format => 'png' );
+    $c->render( data => $data, format => $dia->type );
 };
 
 app->start;
