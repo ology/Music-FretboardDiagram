@@ -1,6 +1,8 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.1102 2019-03-09 13:25:11
     - Hide ugly, reused syntax in the ->_note_at method.
 
 0.1101 2019-03-04 13:38:08
