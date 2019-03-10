@@ -12,6 +12,7 @@ get '/:chord/:position' => sub {
     my $dia = Music::FretboardDiagram->new(
         chord    => $c->param('chord'),
         position => $c->param('position'),
+        showname => $c->param('showname') || 1, # query param
         frets    => 6,
         horiz    => 1,
         image    => 1,
