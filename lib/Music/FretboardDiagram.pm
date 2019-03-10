@@ -40,8 +40,9 @@ use Music::Chord::Namer 'chordname';
     tuning   => [qw/A E C G/],
     horiz    => 1,
     image    => 1,
-    grid     => 'gray',
     verbose  => 1,
+    string_color => 'blue',
+    fret_color   => 'darkgray',
   );
   my $image = $dia->draw;
 
@@ -264,19 +265,34 @@ has image => (
     default => sub { 0 },
 );
 
-=head2 grid
+=head2 string_color
 
-  $grid = $dia->grid;
+  $string_color = $dia->string_color;
 
-The diagram grid (strings and frets) color.
+The diagram string color.
 
 Default: blue
 
 =cut
 
-has grid => (
+has string_color => (
     is      => 'ro',
     default => sub { 'blue' },
+);
+
+=head2 fret_color
+
+  $fret_color = $dia->fret_color;
+
+The diagram fret color.
+
+Default: darkgray
+
+=cut
+
+has fret_color => (
+    is      => 'ro',
+    default => sub { 'darkgray' },
 );
 
 =head2 fretboard
@@ -384,7 +400,6 @@ sub draw {
     my $WHITE = 'white';
     my $BLACK = 'black';
     my $GRAY  = 'gray';
-    my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
     my @chord;
@@ -404,23 +419,10 @@ sub draw {
         warn 'WARNING: Font ', $self->font, " not found\n";
     }
 
-    # Draw the vertical string lines
-    for my $string ( 0 .. $self->strings - 1 ) {
-        $i->line(
-            color => $GRID,
-            x1    => $SPACE + $string * $SPACE,
-            y1    => $SPACE,
-            x2    => $SPACE + $string * $SPACE,
-            y2    => $SPACE + ($self->frets - 1) * $SPACE,
-            aa    => 1,
-            endp  => 1
-        );
-    }
- 
     # Draw the horizontal fret lines
     for my $fret ( 0 .. $self->frets - 1 ) {
         $i->line(
-            color => $GRID,
+            color => $self->fret_color,
             x1    => $SPACE,
             y1    => $SPACE + $fret * $SPACE,
             x2    => $SPACE + ($self->strings - 1) * $SPACE,
@@ -450,6 +452,19 @@ sub draw {
                 y     => $SPACE + $fret * $SPACE + $SPACE / 2,
             ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $self->frets );
         }
+    }
+
+    # Draw the vertical string lines
+    for my $string ( 0 .. $self->strings - 1 ) {
+        $i->line(
+            color => $self->string_color,
+            x1    => $SPACE + $string * $SPACE,
+            y1    => $SPACE,
+            x2    => $SPACE + $string * $SPACE,
+            y2    => $SPACE + ($self->frets - 1) * $SPACE,
+            aa    => 1,
+            endp  => 1
+        );
     }
 
     # Draw the note/mute markers
@@ -532,7 +547,6 @@ sub _draw_horiz {
     my $WHITE = 'white';
     my $BLACK = 'black';
     my $GRAY  = 'gray';
-    my $GRID  = $self->grid;
     my $SPACE = $self->size;
 
     my @chord;
@@ -552,23 +566,10 @@ sub _draw_horiz {
         warn 'WARNING: Font ', $self->font, " not found\n";
     }
 
-    # Draw the horizontal string lines
-    for my $string ( 0 .. $self->strings - 1 ) {
-        $i->line(
-            color => $GRID,
-            y1    => $SPACE + $string * $SPACE,
-            x1    => $SPACE,
-            y2    => $SPACE + $string * $SPACE,
-            x2    => $SPACE + ($self->frets - 1) * $SPACE,
-            aa    => 1,
-            endp  => 1
-        );
-    }
- 
     # Draw the vertical fret lines
     for my $fret ( 0 .. $self->frets - 1 ) {
         $i->line(
-            color => $GRID,
+            color => $self->fret_color,
             y1    => $SPACE,
             x1    => $SPACE + $fret * $SPACE,
             y2    => $SPACE + ($self->strings - 1) * $SPACE,
@@ -598,6 +599,19 @@ sub _draw_horiz {
                 x     => $SPACE + $fret * $SPACE + $SPACE / 2,
             ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $self->frets );
         }
+    }
+
+    # Draw the horizontal string lines
+    for my $string ( 0 .. $self->strings - 1 ) {
+        $i->line(
+            color => $self->string_color,
+            y1    => $SPACE + $string * $SPACE,
+            x1    => $SPACE,
+            y2    => $SPACE + $string * $SPACE,
+            x2    => $SPACE + ($self->frets - 1) * $SPACE,
+            aa    => 1,
+            endp  => 1
+        );
     }
 
     # Draw the note/mute markers
