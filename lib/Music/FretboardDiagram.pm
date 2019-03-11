@@ -302,13 +302,13 @@ has fret_color => (
 
 The diagram finger position dot color.
 
-Default: gray
+Default: black
 
 =cut
 
 has dot_color => (
     is      => 'ro',
-    default => sub { 'gray' },
+    default => sub { 'black' },
 );
 
 =head2 fretboard
@@ -415,7 +415,7 @@ sub draw {
 
     my $WHITE = 'white';
     my $BLACK = 'black';
-    my $GRAY  = 'gray';
+    my $TAN   = 'tan';
     my $SPACE = $self->size;
 
     my @chord;
@@ -462,7 +462,7 @@ sub draw {
 
         if ( $self->_fret_match($fret) ) {
             $i->circle(
-                color => $GRAY,
+                color => $TAN,
                 r     => $SPACE / 8,
                 x     => $SPACE * $self->strings / 2 + $SPACE / 2,
                 y     => $SPACE + $fret * $SPACE + $SPACE / 2,
@@ -562,7 +562,7 @@ sub _draw_horiz {
 
     my $WHITE = 'white';
     my $BLACK = 'black';
-    my $GRAY  = 'gray';
+    my $TAN   = 'tan';
     my $SPACE = $self->size;
 
     my @chord;
@@ -609,7 +609,7 @@ sub _draw_horiz {
 
         if ( $self->_fret_match($fret) ) {
             $i->circle(
-                color => $GRAY,
+                color => $TAN,
                 r     => $SPACE / 8,
                 y     => $SPACE * $self->strings / 2 + $SPACE / 2,
                 x     => $SPACE + $fret * $SPACE + $SPACE / 2,
