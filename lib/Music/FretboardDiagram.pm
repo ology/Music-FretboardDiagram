@@ -41,9 +41,9 @@ use Music::Chord::Namer 'chordname';
     horiz    => 1,
     image    => 1,
     verbose  => 1,
-    string_color => 'blue',
+    string_color => 'black',
     fret_color   => 'darkgray',
-    dot_color    => 'gray',
+    dot_color    => 'blue',
   );
   my $image = $dia->draw;
 
