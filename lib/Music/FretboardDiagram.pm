@@ -43,6 +43,7 @@ use Music::Chord::Namer 'chordname';
     verbose  => 1,
     string_color => 'blue',
     fret_color   => 'darkgray',
+    dot_color    => 'gray',
   );
   my $image = $dia->draw;
 
@@ -295,6 +296,21 @@ has fret_color => (
     default => sub { 'darkgray' },
 );
 
+=head2 dot_color
+
+  $dot_color = $dia->dot_color;
+
+The diagram finger position dot color.
+
+Default: gray
+
+=cut
+
+has dot_color => (
+    is      => 'ro',
+    default => sub { 'gray' },
+);
+
 =head2 fretboard
 
   $fretboard = $dia->fretboard;
@@ -507,7 +523,7 @@ sub draw {
             print "Dot at $note,$string = $temp\n" if $self->verbose;
 
             $i->circle(
-                color => $BLACK,
+                color => $self->dot_color,
                 r     => $SPACE / 5,
                 x     => $SPACE + ($self->strings - $string) * $SPACE,
                 y     => $SPACE + $SPACE / 2 + ($note - 1) * $SPACE,
@@ -654,7 +670,7 @@ sub _draw_horiz {
             print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
 
             $i->circle(
-                color => $BLACK,
+                color => $self->dot_color,
                 r     => $SPACE / 5,
                 y     => $SPACE + ($string - 1) * $SPACE,
                 x     => $SPACE + $SPACE / 2 + ($note - 1) * $SPACE,
