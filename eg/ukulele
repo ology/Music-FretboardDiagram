@@ -18,6 +18,7 @@ my $dia = Music::FretboardDiagram->new(
     verbose  => 1,
     string_color => 'blue',
     fret_color   => 'darkgray',
+    dot_color    => 'gray',
 );
 
 $dia->draw();
