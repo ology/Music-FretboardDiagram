@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 
 use Mojolicious::Lite;
-use Mojo::File;
 
 use Music::FretboardDiagram;
 use Imager;
