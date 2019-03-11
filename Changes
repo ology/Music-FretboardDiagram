@@ -1,6 +1,8 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.1200 2019-03-10 17:46:28
     - Draw the strings, frets and dots with user definable colors.
 
 0.1102 2019-03-09 13:25:11
