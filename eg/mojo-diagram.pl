@@ -1,17 +1,15 @@
 #!/usr/bin/env perl
 
-use Mojolicious::Lite;
-
-use lib '/Users/gene/sandbox/Music-FretboardDiagram/lib';
-use Music::FretboardDiagram;
-use Imager;
-
 # Usage:
 # http://$host/:chord/:position[?showname={0,Chord+Name}]
 # Examples:
 # http://localhost/002220/1
 # http://localhost/012340/1?showname=0
 # http://localhost/012340/3?showname=Xb+dim
+
+use Mojolicious::Lite;
+use Music::FretboardDiagram;
+use Imager;
 
 get '/' => sub { shift->redirect_to('/x02220/1') };
 
