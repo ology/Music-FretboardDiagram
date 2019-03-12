@@ -772,4 +772,8 @@ L<GD::Tab::Guitar> and L<GD::Tab::Ukulele>
 
 L<Music::Image::Chord>
 
+For a B<real> chord analyzer:
+
+L<https://www.oolimo.com/guitarchords/analyze>
+
 =cut
