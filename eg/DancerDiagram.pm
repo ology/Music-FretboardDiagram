@@ -31,7 +31,7 @@ get '/:chord/:position' => sub {
     $i->write( data => \$data, type => $dia->type )
         or die "Can't write to memory: ", $i->errstr;
 
-    send_file( \$data, content_type => 'image/png' );
+    send_file( \$data, content_type => 'image/' . $dia->type );
 };
 
 true;
