@@ -2,6 +2,7 @@
 
 use Mojolicious::Lite;
 
+use lib '/Users/gene/sandbox/Music-FretboardDiagram/lib';
 use Music::FretboardDiagram;
 use Imager;
 
@@ -11,6 +12,8 @@ use Imager;
 # http://localhost/002220/1
 # http://localhost/012340/1?showname=0
 # http://localhost/012340/3?showname=Xb+dim
+
+get '/' => sub { shift->redirect_to('/x02220/1') };
 
 get '/:chord/:position' => sub {
     my $c = shift;
