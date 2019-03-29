@@ -707,25 +707,16 @@ sub _draw_horiz {
 sub _fret_match {
     my ($self, $fret) = @_;
     return
-        ( $self->position + $fret == 3 )
-        ||
-        ( $self->position + $fret == 5 )
-        ||
-        ( $self->position + $fret == 7 )
-        ||
-        ( $self->position + $fret == 9 )
-        ||
-        ( $self->position + $fret == 12 )
-        ||
-        ( $self->position + $fret == 15 )
-        ||
-        ( $self->position + $fret == 17 )
-        ||
-        ( $self->position + $fret == 19 )
-        ||
-        ( $self->position + $fret == 21 )
-        ||
-        ( $self->position + $fret == 24 );
+           ( $self->position + $fret == 3 )
+        || ( $self->position + $fret == 5 )
+        || ( $self->position + $fret == 7 )
+        || ( $self->position + $fret == 9 )
+        || ( $self->position + $fret == 12 )
+        || ( $self->position + $fret == 15 )
+        || ( $self->position + $fret == 17 )
+        || ( $self->position + $fret == 19 )
+        || ( $self->position + $fret == 21 )
+        || ( $self->position + $fret == 24 );
 }
 
 sub _note_at {
