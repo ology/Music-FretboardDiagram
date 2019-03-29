@@ -706,8 +706,7 @@ sub _draw_horiz {
 
 sub _fret_match {
     my ($self, $fret) = @_;
-    return
-           ( $self->position + $fret == 3 )
+    return ( $self->position + $fret == 3 )
         || ( $self->position + $fret == 5 )
         || ( $self->position + $fret == 7 )
         || ( $self->position + $fret == 9 )
