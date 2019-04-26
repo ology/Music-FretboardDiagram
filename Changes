@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Turned the Dancer2 example module into a proper script.
 
 0.1201 2019-03-12 09:45:54
     - Improve the eg example programs.
