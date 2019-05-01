@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - My distribution went AWOL from metacpan. Hopefully re-uploading will fix it...
 
 0.1202 2019-04-26 13:18:43
     - Turned the Dancer2 example module into a proper script.
