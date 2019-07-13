@@ -55,7 +55,6 @@ neck position and chord name annotations for guitar, ukulele, banjo, etc.
 =begin html
 
 Here are examples of a vertical guitar diagram and a horizontal ukulele diagram:
-
 <br>
 <img src="https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/chord-diagram.png">
 <img src="https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/ukulele.png">
