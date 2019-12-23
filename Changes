@@ -3,7 +3,7 @@ Revision history for Music-FretboardDiagram
 {{$NEXT}}
 
 0.1204 2019-12-23 06:33:59
-    - Use List::SomeUtils, not List::More::Utils.
+    - Use List::SomeUtils, not List::MoreUtils.
     - Fix HTML in POD.
     - Fix github repo in dist.
 
