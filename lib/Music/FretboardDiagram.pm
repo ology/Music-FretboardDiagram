@@ -9,7 +9,7 @@ use strictures 2;
 use namespace::clean;
 
 use Imager;
-use List::MoreUtils 'first_index';
+use List::SomeUtils 'first_index';
 use Music::Chord::Namer 'chordname';
 
 =head1 SYNOPSIS
@@ -749,7 +749,7 @@ The F<eg/> files in this distribution
 
 L<Imager>
 
-L<List::MoreUtils>
+L<List::SomeUtils>
 
 L<Moo>
 
