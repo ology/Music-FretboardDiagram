@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Do not document the ->BUILD method.
 
 0.1204 2019-12-23 06:33:59
     - Use List::SomeUtils, not List::MoreUtils.
