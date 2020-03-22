@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.1204';
+our $VERSION = '0.1205';
 
 use Moo;
 use strictures 2;
@@ -369,9 +369,7 @@ has verbose => (
 
 Create a new C<Music::FretboardDiagram> object.
 
-=head2 BUILD
-
-Construct the B<fretboard> attribute from the B<tuning>.
+=for Pod::Coverage BUILD
 
 =cut
 
