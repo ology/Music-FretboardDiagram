@@ -409,7 +409,8 @@ sub BUILD {
 
   $dia->draw;
 
-Render the requested chord diagram as an image file of the given B<type>.
+Render the requested chord diagram as an image file of the given
+B<type>.
 
 =cut
 
