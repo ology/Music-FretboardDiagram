@@ -34,12 +34,14 @@ use Music::Chord::Namer 'chordname';
 
 =head1 DESCRIPTION
 
-A C<Music::FretboardDiagram> object draws fretboard chord diagrams including
-neck position and chord name annotations for guitar, ukulele, banjo, etc.
+A C<Music::FretboardDiagram> object draws fretboard chord diagrams
+including neck position and chord name annotations for guitar,
+ukulele, banjo, etc.
 
 =begin html
 
-Here are examples of a vertical guitar diagram and a horizontal ukulele diagram:
+Here are examples of a vertical guitar diagram and a horizontal
+ukulele diagram:
 <br>
 <img src="https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/chord-diagram.png">
 <img src="https://raw.githubusercontent.com/ology/Music-FretboardDiagram/master/ukulele.png">
@@ -96,9 +98,9 @@ has chord => (
   $dia->position(3);
   $position = $dia->position;
 
-The neck position of a chord to be diagrammed.  This number is rendered to the
-left of the first fret in vertical mode.  When drawing horizontally, the
-position is rendered above the first fret.
+The neck position of a chord to be diagrammed.  This number is
+rendered to the left of the first fret in vertical mode.  When drawing
+horizontally, the position is rendered above the first fret.
 
 Default: C<1>
 
@@ -208,8 +210,9 @@ has font => (
 
   $tuning = $dia->tuning;
 
-An arrayref of the string tuning.  The order of the notes is from highest string
-(1st) to lowest (6th).  For accidental notes, use flat (C<b>), not sharp (C<#>).
+An arrayref of the string tuning.  The order of the notes is from
+highest string (1st) to lowest (6th).  For accidental notes, use flat
+(C<b>), not sharp (C<#>).
 
 Default: C<[ E B G D A E ]>
 
@@ -224,8 +227,9 @@ has tuning => (
 
   $horiz = $dia->horiz;
 
-Draw the diagram horizontally.  That is, with the first string at the top and
-the 6th string at the bottom, and frets numbered from left to right.
+Draw the diagram horizontally.  That is, with the first string at the
+top and the 6th string at the bottom, and frets numbered from left to
+right.
 
 Default: C<0>
 
@@ -296,20 +300,6 @@ has dot_color => (
     default => sub { 'black' },
 );
 
-=head2 fretboard
-
-  $fretboard = $dia->fretboard;
-
-A hashref of the string notes.  This is a computed attribute based on the given
-B<tuning>.
-
-=cut
-
-has fretboard => (
-    is       => 'ro',
-    init_arg => undef,
-);
-
 =head2 showname
 
   $dia->showname('Xb dim');
@@ -319,9 +309,9 @@ has fretboard => (
 
 Show a chord name or not.
 
-Sometimes the computed chord name is not that accurate or desired.  In those
-cases either set the B<showname> to a string of your choosing before drawing, or
-to C<0> for no chord name.
+Sometimes the computed chord name is not that accurate or desired.  In
+those cases either set the B<showname> to a string of your choosing
+before drawing, or to C<0> for no chord name.
 
 Default: C<1>
 
@@ -345,6 +335,20 @@ Default: C<0>
 has verbose => (
     is      => 'ro',
     default => sub { 0 },
+);
+
+=head2 fretboard
+
+  $fretboard = $dia->fretboard;
+
+A hashref of the string notes.  This is a computed attribute based on
+the given B<tuning>.
+
+=cut
+
+has fretboard => (
+    is       => 'ro',
+    init_arg => undef,
 );
 
 =head1 METHODS
