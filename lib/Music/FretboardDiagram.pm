@@ -197,7 +197,7 @@ has type => (
 
   $font = $dia->font;
 
-The TTF font to use when rendering the diagram.
+The (TTF) font.
 
 Default: C</usr/share/fonts/truetype/freefont/FreeMono.ttf>
 
