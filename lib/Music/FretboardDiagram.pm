@@ -2,7 +2,7 @@ package Music::FretboardDiagram;
 
 # ABSTRACT: Draw fretboard chord diagrams
 
-our $VERSION = '0.1206';
+our $VERSION = '0.1207';
 
 use Moo;
 use strictures 2;
