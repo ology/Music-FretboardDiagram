@@ -246,7 +246,8 @@ has horiz => (
 
   $image = $dia->image;
 
-Return the image from the B<draw> method instead of writing to a file.
+Return the image from the B<draw> method instead of writing it to a
+file.
 
 Default: C<0>
 
