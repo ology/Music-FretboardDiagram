@@ -305,8 +305,8 @@ has dot_color => (
 
 =head2 showname
 
-  $dia->showname('Xb dim');
-  $dia->showname(1); # Reset to computed names
+  $dia->showname('Xb dim'); # Show a custom name
+  $dia->showname(1); # Show computed names
   $dia->showname(0); # Do not show chord names
   $showname = $dia->showname;
 
