@@ -7,25 +7,23 @@ use Test::Exception;
 
 use_ok 'Music::FretboardDiagram';
 
-my $obj;
-
 throws_ok {
-    $obj = Music::FretboardDiagram->new( position => 'foo' )
+    Music::FretboardDiagram->new( position => 'foo' )
 } qr/not a positive integer/, 'bogus position dies';
 throws_ok {
-    $obj = Music::FretboardDiagram->new( strings => 'foo' )
+    Music::FretboardDiagram->new( strings => 'foo' )
 } qr/not a positive integer/, 'bogus strings dies';
 throws_ok {
-    $obj = Music::FretboardDiagram->new( frets => 'foo' )
+    Music::FretboardDiagram->new( frets => 'foo' )
 } qr/not a positive integer/, 'bogus frets dies';
 throws_ok {
-    $obj = Music::FretboardDiagram->new( size => 'foo' )
+    Music::FretboardDiagram->new( size => 'foo' )
 } qr/not a positive integer/, 'bogus size dies';
 throws_ok {
-    $obj = Music::FretboardDiagram->new( chord => '54321' )
+    Music::FretboardDiagram->new( chord => '54321' )
 } qr/chord length and string number differ/, 'chord length not equal to strings';
 
-$obj = Music::FretboardDiagram->new( chord => 'xxxxxx' );
+my $obj = Music::FretboardDiagram->new( chord => 'xxxxxx' );
 isa_ok $obj, 'Music::FretboardDiagram';
 
 is $obj->chord, 'xxxxxx', 'chord';
