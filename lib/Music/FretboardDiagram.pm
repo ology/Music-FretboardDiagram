@@ -54,9 +54,10 @@ Here are examples of a vertical guitar diagram and a horizontal ukulele diagram:
   $dia->chord('xx0232');
   $chord = $dia->chord;
 
-A chord given as a string, where non-zero digits represent frets, C<x> (or C<X>)
-indicates a muted string and C<0> (or C<o> or C<O>) indicates an open string.
-The default order of the strings is C<654321> from lowest to highest.
+A required chord given as a string, where non-zero digits represent
+frets, C<x> (or C<X>) indicates a muted string and C<0> (or C<o> or
+C<O>) indicates an open string.  The default order of the strings is
+C<654321> from lowest to highest.
 
 Examples:
 
@@ -99,7 +100,7 @@ The neck position of a chord to be diagrammed.  This number is rendered to the
 left of the first fret in vertical mode.  When drawing horizontally, the
 position is rendered above the first fret.
 
-Default: 1
+Default: C<1>
 
 =cut
 
@@ -115,7 +116,7 @@ has position => (
 
 The number of strings.
 
-Default: 6
+Default: C<6>
 
 =cut
 
@@ -131,7 +132,7 @@ has strings => (
 
 The number of frets.
 
-Default: 5
+Default: C<5>
 
 =cut
 
@@ -147,7 +148,7 @@ has frets => (
 
 The relative size of the diagram.
 
-Default: 30
+Default: C<30>
 
 =cut
 
@@ -164,7 +165,7 @@ has size => (
 
 The image file name minus the extension.
 
-Default: chord-diagram
+Default: C<chord-diagram>
 
 =cut
 
@@ -179,7 +180,7 @@ has outfile => (
 
 The image file extension.
 
-Default: png
+Default: C<png>
 
 =cut
 
@@ -194,7 +195,7 @@ has type => (
 
 The TTF font to use when rendering the diagram.
 
-Default: /opt/X11/share/fonts/TTF/VeraMono.ttf
+Default: C</usr/share/fonts/truetype/freefont/FreeMono.ttf>
 
 =cut
 
@@ -210,7 +211,7 @@ has font => (
 An arrayref of the string tuning.  The order of the notes is from highest string
 (1st) to lowest (6th).  For accidental notes, use flat (C<b>), not sharp (C<#>).
 
-Default: [ E B G D A E ]
+Default: C<[ E B G D A E ]>
 
 =cut
 
@@ -226,7 +227,7 @@ has tuning => (
 Draw the diagram horizontally.  That is, with the first string at the top and
 the 6th string at the bottom, and frets numbered from left to right.
 
-Default: 0
+Default: C<0>
 
 =cut
 
@@ -241,7 +242,7 @@ has horiz => (
 
 Return the image from the B<draw> method instead of writing to a file.
 
-Default: 0
+Default: C<0>
 
 =cut
 
@@ -256,7 +257,7 @@ has image => (
 
 The diagram string color.
 
-Default: blue
+Default: C<blue>
 
 =cut
 
@@ -271,7 +272,7 @@ has string_color => (
 
 The diagram fret color.
 
-Default: darkgray
+Default: C<darkgray>
 
 =cut
 
@@ -286,7 +287,7 @@ has fret_color => (
 
 The diagram finger position dot color.
 
-Default: black
+Default: C<black>
 
 =cut
 
@@ -322,7 +323,7 @@ Sometimes the computed chord name is not that accurate or desired.  In those
 cases either set the B<showname> to a string of your choosing before drawing, or
 to C<0> for no chord name.
 
-Default: 1
+Default: C<1>
 
 =cut
 
@@ -337,7 +338,7 @@ has showname => (
 
 Monitor the progress of the diagram construction.
 
-Default: 0
+Default: C<0>
 
 =cut
 
