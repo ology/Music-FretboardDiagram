@@ -56,27 +56,27 @@ subtest methods => sub {
     can_ok $obj, 'draw';
 
     my $note = 0;
-    my $x = $obj->_note_at(1, $note);
-    is $x, 'E', 'open E';
+    my $got = $obj->_note_at(1, $note);
+    is $got, 'E', 'open E';
     $note = 1;
-    $x = $obj->_note_at(1, $note);
-    is $x, 'F', '1st fret F';
+    $got = $obj->_note_at(1, $note);
+    is $got, 'F', '1st fret F';
 
     $note = 0;
     $obj->position(13);
-    $x = $obj->_note_at(1, $note);
-    is $x, 'E', '12th fret E';
+    $got = $obj->_note_at(1, $note);
+    is $got, 'E', '12th fret E';
     $note = 1;
-    $x = $obj->_note_at(1, $note);
-    is $x, 'F', '13th fret F';
+    $got = $obj->_note_at(1, $note);
+    is $got, 'F', '13th fret F';
 
     $note = 0;
     $obj->position(25);
-    $x = $obj->_note_at(1, $note);
-    is $x, 'E', '24th fret E';
+    $got = $obj->_note_at(1, $note);
+    is $got, 'E', '24th fret E';
     $note = 1;
-    $x = $obj->_note_at(1, $note);
-    is $x, 'F', '25th fret F';
+    $got = $obj->_note_at(1, $note);
+    is $got, 'F', '25th fret F';
 };
 
 done_testing();
