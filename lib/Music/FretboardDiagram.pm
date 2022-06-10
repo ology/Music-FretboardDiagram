@@ -412,6 +412,9 @@ sub BUILD {
 Render the requested chord diagram as an image file of the given
 B<type>.
 
+If the C<image> attribute is set, return the image object instead of
+writing to a file.
+
 =cut
 
 sub draw {
