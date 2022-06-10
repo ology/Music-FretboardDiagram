@@ -17,35 +17,20 @@ use Music::Chord::Namer 'chordname';
   use Music::FretboardDiagram;
 
   my $dia = Music::FretboardDiagram->new(
-    chord => 'x02220',
-    font  => '/path/to/TTF/font.ttf',
+    chord   => 'x02220',
+    frets   => 13,
+    outfile => 'fretboard',
+    font    => '/path/to/TTF/font.ttf',
+    horiz   => 1,
+    verbose => 1,
   );
-  $dia->draw;
 
-  $dia->chord('xx0232');
-  $dia->position(5);
-  $dia->outfile('mystery-chord');
-  $dia->showname('Xb dim'); # "X flat diminished"
-  $dia->draw;
+  $dia->chord('xx0232');          # set a new chord
+  $dia->position(5);              # set a new position
+  $dia->outfile('mystery-chord'); # set a new filename
+  $dia->showname('Xb dim');       # "X flat diminished"
 
-  $dia = Music::FretboardDiagram->new(
-    chord    => '4442',
-    position => 3,
-    strings  => 4,
-    frets    => 6,
-    size     => 25,
-    outfile  => 'ukulele-chord',
-    type     => 'bmp',
-    font     => '/path/to/TTF/font.ttf',
-    tuning   => [qw/A E C G/],
-    horiz    => 1,
-    image    => 1,
-    verbose  => 1,
-    string_color => 'black',
-    fret_color   => 'darkgray',
-    dot_color    => 'blue',
-  );
-  my $image = $dia->draw;
+  $dia->draw;
 
 =head1 DESCRIPTION
 
@@ -365,7 +350,24 @@ has verbose => (
 
 =head2 new
 
-  $dia = Music::FretboardDiagram->new(%arguments);
+  $dia = Music::FretboardDiagram->new(
+    chord        => $chord,
+    position     => $position,
+    strings      => $strings,
+    frets        => $frets,
+    size         => $size,
+    tuning       => $tuning,
+    font         => $font,
+    showname     => $showname,
+    horiz        => $horiz,
+    image        => $image,
+    string_color => $string_color,
+    fret_color   => $fret_color,
+    dot_color    => $dot_color,
+    outfile      => $outfile,
+    type         => $type,
+    verbose      => $verbose,
+  );
 
 Create a new C<Music::FretboardDiagram> object.
 
