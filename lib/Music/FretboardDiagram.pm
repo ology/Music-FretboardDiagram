@@ -87,6 +87,8 @@ Examples:
   A7: x02020
   B7: x21202
 
+  etc.
+
 =cut
 
 has chord => (
