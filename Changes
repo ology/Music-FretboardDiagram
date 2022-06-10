@@ -2,6 +2,7 @@ Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
     - Improve documentation.
+    - Improve test file.
 
 0.1205 2020-03-21 17:27:21
     - Do not document the ->BUILD method.
