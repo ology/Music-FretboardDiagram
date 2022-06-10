@@ -8,7 +8,7 @@ use Moo;
 use strictures 2;
 use namespace::clean;
 
-use Imager;
+use Imager ();
 use List::SomeUtils 'first_index';
 use Music::Chord::Namer 'chordname';
 
