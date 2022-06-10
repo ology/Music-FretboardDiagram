@@ -26,7 +26,7 @@ use Music::Chord::Namer 'chordname';
   );
 
   $dia->chord('xx0232');          # set a new chord
-  $dia->position(5);              # set a new position
+  $dia->position(1);              # set a new position
   $dia->outfile('mystery-chord'); # set a new filename
   $dia->showname('Xb dim');       # "X flat diminished"
 
