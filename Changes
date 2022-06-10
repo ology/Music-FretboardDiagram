@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Restore the accidentally deleted eg/ukelele program.
+
+0.1206 2022-06-10 11:16:37
     - Improve documentation.
     - Improve test file.
 
