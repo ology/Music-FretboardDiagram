@@ -2,6 +2,7 @@ Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
     - Fix the default font.
+    - Allow multiple chords to be rendered.
 
 0.1207 2022-06-10 11:25:00
     - Restore the accidentally deleted eg/ukulele program.
