@@ -497,81 +497,81 @@ sub draw {
         );
     }
 
-for my $spec ( @{ $self->chord } ) {
-    my ( $posn, $chord ) = @$spec;
+    for my $spec ( @{ $self->chord } ) {
+        my ( $posn, $chord ) = @$spec;
 
-    my @chord;
+        my @chord;
 
-    # Draw the note/mute markers
-    my $string = $self->strings;
-    for my $note ( split //, $chord ) {
-        if ( $note =~ /-/ ) {
+        # Draw the note/mute markers
+        my $string = $self->strings;
+        for my $note ( split //, $chord ) {
+            if ( $note =~ /-/ ) {
+                $string--;
+                next;
+            }
+
+            if ( $note =~ /[xX]/ ) {
+                print "X at 0,$string\n" if $self->verbose;
+
+                $i->string(
+                    font  => $font,
+                    text  => 'X',
+                    color => $BLACK,
+                    x     => $SPACE + ($self->strings - $string) * $SPACE - $SPACE / 6,
+                    y     => $SPACE - 2,
+                    size  => $SPACE / 2,
+                    aa    => 1,
+                );
+            }
+            elsif ( $note =~ /[oO0]/ ) {
+                my $temp = $self->fretboard->{$string}[0];
+                push @chord, $temp;
+
+                print "O at 0,$string = $temp\n" if $self->verbose;
+
+                $i->string(
+                    font  => $font,
+                    text  => 'O',
+                    color => $BLACK,
+                    x     => $SPACE + ($self->strings - $string) * $SPACE - $SPACE / 6,
+                    y     => $SPACE - 2,
+                    size  => $SPACE / 2,
+                    aa    => 1,
+                );
+            }
+            else {
+                my $temp = $self->_note_at($string, $note);
+                push @chord, $temp;
+
+                print "Dot at $note,$string = $temp\n" if $self->verbose;
+
+                $i->circle(
+                    color => $self->dot_color,
+                    r     => $SPACE / 5,
+                    x     => $SPACE + ($self->strings - $string) * $SPACE,
+                    y     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
+                );
+            }
+
+            # Decrement the current string number
             $string--;
-            next;
         }
 
-        if ( $note =~ /[xX]/ ) {
-            print "X at 0,$string\n" if $self->verbose;
-
+        # Print the chord name if requested
+        if ( $self->showname ) {
+            my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
+            print "Chord = $chord_name\n" if $self->verbose;
             $i->string(
                 font  => $font,
-                text  => 'X',
+                text  => $chord_name,
                 color => $BLACK,
-                x     => $SPACE + ($self->strings - $string) * $SPACE - $SPACE / 6,
-                y     => $SPACE - 2,
+                x     => $SPACE,
+                y     => ($self->frets + 1) * $SPACE - $SPACE / 3,
                 size  => $SPACE / 2,
                 aa    => 1,
             );
         }
-        elsif ( $note =~ /[oO0]/ ) {
-            my $temp = $self->fretboard->{$string}[0];
-            push @chord, $temp;
-
-            print "O at 0,$string = $temp\n" if $self->verbose;
-
-            $i->string(
-                font  => $font,
-                text  => 'O',
-                color => $BLACK,
-                x     => $SPACE + ($self->strings - $string) * $SPACE - $SPACE / 6,
-                y     => $SPACE - 2,
-                size  => $SPACE / 2,
-                aa    => 1,
-            );
-        }
-        else {
-            my $temp = $self->_note_at($string, $note);
-            push @chord, $temp;
-
-            print "Dot at $note,$string = $temp\n" if $self->verbose;
-
-            $i->circle(
-                color => $self->dot_color,
-                r     => $SPACE / 5,
-                x     => $SPACE + ($self->strings - $string) * $SPACE,
-                y     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
-            );
-        }
-
-        # Decrement the current string number
-        $string--;
     }
-
-    # Print the chord name if requested
-    if ( $self->showname ) {
-        my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
-        print "Chord = $chord_name\n" if $self->verbose;
-        $i->string(
-            font  => $font,
-            text  => $chord_name,
-            color => $BLACK,
-            x     => $SPACE,
-            y     => ($self->frets + 1) * $SPACE - $SPACE / 3,
-            size  => $SPACE / 2,
-            aa    => 1,
-        );
-    }
-}
 
     if ( $self->image ) {
         return $i;
@@ -653,78 +653,78 @@ sub _draw_horiz {
         );
     }
 
-for my $spec ( @{ $self->chord } ) {
-    my ( $posn, $chord ) = @$spec;
+    for my $spec ( @{ $self->chord } ) {
+        my ( $posn, $chord ) = @$spec;
 
-    my @chord;
+        my @chord;
 
-    # Draw the note/mute markers
-    my $string = 1;
-    for my $note ( reverse split //, $chord ) {
-        next if $note =~ /-/;
+        # Draw the note/mute markers
+        my $string = 1;
+        for my $note ( reverse split //, $chord ) {
+            next if $note =~ /-/;
 
-        if ( $note =~ /[xX]/ ) {
-            print "X at fret:0, string:$string\n" if $self->verbose;
+            if ( $note =~ /[xX]/ ) {
+                print "X at fret:0, string:$string\n" if $self->verbose;
 
+                $i->string(
+                    font  => $font,
+                    text  => 'X',
+                    color => $BLACK,
+                    y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
+                    x     => $SPACE - $SPACE / 2,
+                    size  => $SPACE / 2,
+                    aa    => 1,
+                );
+            }
+            elsif ( $note =~ /[oO0]/ ) {
+                my $temp = $self->fretboard->{$string}[0];
+                unshift @chord, $temp;
+
+                print "O at fret:0, string:$string = $temp\n" if $self->verbose;
+
+                $i->string(
+                    font  => $font,
+                    text  => 'O',
+                    color => $BLACK,
+                    y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
+                    x     => $SPACE - $SPACE / 2,
+                    size  => $SPACE / 2,
+                    aa    => 1,
+                );
+            }
+            else {
+                my $temp = $self->_note_at($string, $note);
+                unshift @chord, $temp;
+
+                print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
+
+                $i->circle(
+                    color => $self->dot_color,
+                    r     => $SPACE / 5,
+                    y     => $SPACE + ($string - 1) * $SPACE,
+                    x     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
+                );
+            }
+
+            # Increment the current string number
+            $string++;
+        }
+
+        # Print the chord name if requested
+        if ( $self->showname ) {
+            my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
+            print "Chord = $chord_name\n" if $self->verbose;
             $i->string(
                 font  => $font,
-                text  => 'X',
+                text  => $chord_name,
                 color => $BLACK,
-                y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
-                x     => $SPACE - $SPACE / 2,
+                x     => $SPACE,
+                y     => ($self->strings + 1) * $SPACE - $SPACE / 3,
                 size  => $SPACE / 2,
                 aa    => 1,
             );
         }
-        elsif ( $note =~ /[oO0]/ ) {
-            my $temp = $self->fretboard->{$string}[0];
-            unshift @chord, $temp;
-
-            print "O at fret:0, string:$string = $temp\n" if $self->verbose;
-
-            $i->string(
-                font  => $font,
-                text  => 'O',
-                color => $BLACK,
-                y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
-                x     => $SPACE - $SPACE / 2,
-                size  => $SPACE / 2,
-                aa    => 1,
-            );
-        }
-        else {
-            my $temp = $self->_note_at($string, $note);
-            unshift @chord, $temp;
-
-            print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
-
-            $i->circle(
-                color => $self->dot_color,
-                r     => $SPACE / 5,
-                y     => $SPACE + ($string - 1) * $SPACE,
-                x     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
-            );
-        }
-
-        # Increment the current string number
-        $string++;
     }
-
-    # Print the chord name if requested
-    if ( $self->showname ) {
-        my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
-        print "Chord = $chord_name\n" if $self->verbose;
-        $i->string(
-            font  => $font,
-            text  => $chord_name,
-            color => $BLACK,
-            x     => $SPACE,
-            y     => ($self->strings + 1) * $SPACE - $SPACE / 3,
-            size  => $SPACE / 2,
-            aa    => 1,
-        );
-    }
-}
 
     if ( $self->image ) {
         return $i;
