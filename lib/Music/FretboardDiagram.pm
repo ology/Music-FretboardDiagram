@@ -386,8 +386,11 @@ Create a new C<Music::FretboardDiagram> object.
 sub BUILD {
     my ( $self, $args ) = @_;
 
+    $self->chord( [ [ $self->position, $self->chord ] ] )
+        unless ref $self->chord;
+
     die 'chord length and string number differ'
-        if $args->{chord} && length($args->{chord}) != $self->{strings};
+        if $self->chord && length( $self->chord->[0][1] ) != $self->strings;
 
     my @scale = qw/C Db D Eb E F Gb G Ab A Bb B/;
 
@@ -430,7 +433,6 @@ sub draw {
     my $TAN   = 'tan';
     my $SPACE = $self->size;
 
-    my @chord;
     my $font;
 
     # Setup a new image
@@ -495,9 +497,19 @@ sub draw {
         );
     }
 
+for my $spec ( @{ $self->chord } ) {
+    my ( $posn, $chord ) = @$spec;
+
+    my @chord;
+
     # Draw the note/mute markers
     my $string = $self->strings;
-    for my $note ( split //, $self->chord ) {
+    for my $note ( split //, $chord ) {
+        if ( $note =~ /-/ ) {
+            $string--;
+            next;
+        }
+
         if ( $note =~ /[xX]/ ) {
             print "X at 0,$string\n" if $self->verbose;
 
@@ -537,7 +549,7 @@ sub draw {
                 color => $self->dot_color,
                 r     => $SPACE / 5,
                 x     => $SPACE + ($self->strings - $string) * $SPACE,
-                y     => $SPACE + $SPACE / 2 + ($note - 1) * $SPACE,
+                y     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
             );
         }
 
@@ -559,6 +571,7 @@ sub draw {
             aa    => 1,
         );
     }
+}
 
     if ( $self->image ) {
         return $i;
@@ -576,7 +589,6 @@ sub _draw_horiz {
     my $TAN   = 'tan';
     my $SPACE = $self->size;
 
-    my @chord;
     my $font;
 
     # Setup a new image
@@ -641,9 +653,16 @@ sub _draw_horiz {
         );
     }
 
+for my $spec ( @{ $self->chord } ) {
+    my ( $posn, $chord ) = @$spec;
+
+    my @chord;
+
     # Draw the note/mute markers
     my $string = 1;
-    for my $note ( reverse split //, $self->chord ) {
+    for my $note ( reverse split //, $chord ) {
+        next if $note =~ /-/;
+
         if ( $note =~ /[xX]/ ) {
             print "X at fret:0, string:$string\n" if $self->verbose;
 
@@ -683,7 +702,7 @@ sub _draw_horiz {
                 color => $self->dot_color,
                 r     => $SPACE / 5,
                 y     => $SPACE + ($string - 1) * $SPACE,
-                x     => $SPACE + $SPACE / 2 + ($note - 1) * $SPACE,
+                x     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
             );
         }
 
@@ -705,6 +724,7 @@ sub _draw_horiz {
             aa    => 1,
         );
     }
+}
 
     if ( $self->image ) {
         return $i;
