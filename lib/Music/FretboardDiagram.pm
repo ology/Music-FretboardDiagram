@@ -675,7 +675,11 @@ sub _draw_horiz {
         # Draw the note/mute markers
         my $string = 1;
         for my $note ( reverse split //, $chord ) {
-            next if $note =~ /-/;
+            if ( $note =~ /-/ ) {
+                $string--;
+                next;
+            }
+
 
             if ( $note =~ /[xX]/ ) {
                 print "X at fret:0, string:$string\n" if $self->verbose;
