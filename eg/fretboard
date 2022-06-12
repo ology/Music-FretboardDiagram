@@ -20,7 +20,7 @@ $fingerings = $mcg->fingering('E3', 'm');
 for my $fingering (@$fingerings) {
     my ($chord, $posn) = split /-/, $fingering;
     push @specs, [$posn, $chord]
-        if $posn < $frets;
+        if $posn < $frets - 1;
 }
 
 @specs = sort { $a->[0] <=> $b->[0] } @specs;
