@@ -17,7 +17,14 @@ use Music::Chord::Namer 'chordname';
   use Music::FretboardDiagram;
 
   my $dia = Music::FretboardDiagram->new(
-    chord   => 'x02220',
+    chord   => 'xx0232',
+    frets   => 1,
+    outfile => 'Dm',
+    font    => '/path/to/TTF/font.ttf',
+  );
+
+  $dia = Music::FretboardDiagram->new(
+    chord   => [[1,'022000'], [2,'--1342'], [7,'-13321']], # Em chords
     frets   => 13,
     outfile => 'fretboard',
     font    => '/path/to/TTF/font.ttf',
@@ -54,14 +61,21 @@ ukulele diagram:
 =head2 chord
 
   $dia->chord('xx0232');
+  $dia->chord([[1,'022000'], [2,'--1342'], [7,'-13321']]);
   $chord = $dia->chord;
 
-A required chord given as a string, where non-zero digits represent
-frets, C<x> (or C<X>) indicates a muted string and C<0> (or C<o> or
-C<O>) indicates an open string.  The default order of the strings is
-C<654321> from lowest to highest.
+A required chord given as a string or array reference of
+specifications.
 
-Examples:
+For a chord string, non-zero digits represent frets, C<x> (or C<X>)
+indicates a muted string, C<0> (or C<o> or C<O>) indicates an open
+string, and a dash (C<->) means skip to the next string.  The default
+order of the strings is C<654321> from lowest to highest.
+
+For an array-ref of chord specifications, the first element is the
+chord position, and the second is the chord string.
+
+Chord string examples:
 
   C: x32010
   D: xx0232
