@@ -32,7 +32,7 @@ subtest throws => sub {
 subtest attrs => sub {
     my $obj = new_ok 'Music::FretboardDiagram' => [ chord => 'xxxxxx' ];
 
-    is $obj->chord, 'xxxxxx', 'chord';
+    is_deeply $obj->chord, [[1,'xxxxxx']], 'chord';
     is $obj->position, 1, 'position';
     is $obj->strings, 6, 'strings';
     is $obj->frets, 5, 'frets';
