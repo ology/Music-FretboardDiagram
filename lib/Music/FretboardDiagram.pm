@@ -205,7 +205,7 @@ Default: C</usr/share/fonts/truetype/freefont/FreeMono.ttf>
 
 has font => (
     is      => 'ro',
-    default => sub { '/opt/X11/share/fonts/TTF/VeraMono.ttf' },
+    default => sub { '/usr/share/fonts/truetype/freefont/FreeMono.ttf' },
 );
 
 =head2 tuning
