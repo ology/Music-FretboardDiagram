@@ -676,10 +676,9 @@ sub _draw_horiz {
         my $string = 1;
         for my $note ( reverse split //, $chord ) {
             if ( $note =~ /-/ ) {
-                $string--;
+                $string++;
                 next;
             }
-
 
             if ( $note =~ /[xX]/ ) {
                 print "X at fret:0, string:$string\n" if $self->verbose;
