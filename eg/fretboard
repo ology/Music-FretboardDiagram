@@ -2,10 +2,11 @@
 use strict;
 use warnings;
 
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar);
 use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
-my $mcg = MIDI::Chord::Guitar->new;
+my $mcg = MIDI::Chord::Guitar->new(voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv');
 
 my $frets = 13;
 my @specs;
@@ -13,11 +14,13 @@ my @specs;
 my $fingerings = $mcg->fingering('E2', 'm');
 for my $fingering (@$fingerings) {
     my ($chord, $posn) = split /-/, $fingering;
+    $chord =~ s/[oO0xX]/-/g;
     push @specs, [$posn, $chord];
 }
 $fingerings = $mcg->fingering('E3', 'm');
 for my $fingering (@$fingerings) {
     my ($chord, $posn) = split /-/, $fingering;
+    $chord =~ s/[oO0xX]/-/g;
     push @specs, [$posn, $chord]
         if $posn < $frets - 1;
 }
