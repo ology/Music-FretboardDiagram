@@ -83,7 +83,7 @@ string, and a dash (C<->) means skip to the next string.
 For an array-ref of chord specifications, the first element is the
 chord position, and the second is the chord string.
 
-Chord string examples:
+Chord string examples at position 1:
 
   C: x32010
   D: xx0232
@@ -93,18 +93,13 @@ Chord string examples:
   A: x02220
   B: x24442
 
-  Cm: xx5543
   Dm: xx0231
   Em: 022000
-  Fm: xx3111
-  Gm: xx5333
   Am: x02210
-  Bm: x24432
 
   C7: x32310
   D7: xx0212
   E7: 020100
-  F7: xx1211
   G7: 320001
   A7: x02020
   B7: x21202
