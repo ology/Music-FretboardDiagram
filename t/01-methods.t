@@ -25,6 +25,22 @@ subtest throws => sub {
     } qr/not a positive integer/, 'bogus size dies';
 
     throws_ok {
+        Music::FretboardDiagram->new( horiz => 'foo' )
+    } qr/not a Boolean/, 'bogus horiz dies';
+
+    throws_ok {
+        Music::FretboardDiagram->new( image => 'foo' )
+    } qr/not a Boolean/, 'bogus image dies';
+
+    throws_ok {
+        Music::FretboardDiagram->new( verbose => 'foo' )
+    } qr/not a Boolean/, 'bogus verbose dies';
+
+    throws_ok {
+        Music::FretboardDiagram->new( absolute => 'foo' )
+    } qr/not a Boolean/, 'bogus absolute dies';
+
+    throws_ok {
         Music::FretboardDiagram->new( chord => '54321' )
     } qr/chord length and string number differ/, 'chord length not equal to strings';
 };
