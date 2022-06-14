@@ -34,9 +34,9 @@ use constant TAN   => 'tan';
     frets    => 13,
     absolute => 1,
     size     => 50, # relative units, not pixels
-    outfile  => 'fretboard',
     horiz    => 1,
     showname => 'Em',
+    outfile  => 'fretboard',
     font     => '/path/to/TTF/font.ttf',
     verbose  => 1,
   );
