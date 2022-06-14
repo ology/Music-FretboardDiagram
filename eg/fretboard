@@ -42,7 +42,6 @@ for my $fingering (@$fingerings) {
 #warn ddc(\@specs, {max_width=>128});
 
 my $dia = Music::FretboardDiagram->new(
-#  frets    => 6,
 #  chord    => 'x02220',
 #  position => 1,
   frets    => $frets,
