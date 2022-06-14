@@ -53,4 +53,4 @@ my $dia = Music::FretboardDiagram->new(
   verbose  => 1,
 );
 
-$dia->draw();
+$dia->draw;
