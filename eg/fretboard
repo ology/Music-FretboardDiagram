@@ -8,6 +8,9 @@ use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar);
 use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
+my $note   = shift || 'C3';
+my $flavor = shift || 'm';
+
 my $mcg = MIDI::Chord::Guitar->new(
     # For author testing only:
     voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv'
@@ -16,13 +19,13 @@ my $mcg = MIDI::Chord::Guitar->new(
 my $frets = 16;
 my @specs;
 
-my $fingerings = $mcg->fingering('C3', 'm');
+my $fingerings = $mcg->fingering($note, $flavor);
 for my $fingering (@$fingerings) {
     my ($chord, $posn) = split /-/, $fingering;
     $chord =~ s/[oO0xX]/-/g;
     push @specs, [$posn, $chord];
 }
-$fingerings = $mcg->fingering('C4', 'm');
+$fingerings = $mcg->fingering(++$note, $flavor);
 for my $fingering (@$fingerings) {
     my ($chord, $posn) = split /-/, $fingering;
     $chord =~ s/[oO0xX]/-/g;
