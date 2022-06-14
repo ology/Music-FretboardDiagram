@@ -2,7 +2,7 @@ Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
     - Improve the eg/fretboard program a bit more.
-    - Improve test a bit.
+    - Improve the tests a bit.
 
 0.1306 2022-06-13 23:33:49
     - Improve the eg/fretboard program.
