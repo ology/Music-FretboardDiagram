@@ -42,7 +42,7 @@ use constant TAN   => 'tan';
   );
 
   $dia->chord('x02220');          # set a new chord
-  $dia->position(1);              # set a new position
+  $dia->position(7);              # set a new position
   $dia->outfile('mystery-chord'); # set a new filename
   $dia->showname('Xb dim');       # "X flat diminished"
 
