@@ -67,7 +67,7 @@ subtest attrs => sub {
     is $obj->verbose, 0, 'verbose';
 };
 
-subtest methods => sub {
+subtest _note_at => sub {
     my $obj = new_ok 'Music::FretboardDiagram' => [ chord => 'xxxxxx' ];
 
     can_ok $obj, 'draw';
