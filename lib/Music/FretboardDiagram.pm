@@ -128,6 +128,25 @@ has position => (
     default => sub { 1 },
 );
 
+=head2 absolute
+
+  $position = $dia->absolute;
+
+Use an absolute neck position for rendering a chord on a full length
+fretboard.
+
+If not set, the chord will be rendered relative to the first fret.
+
+Default: C<0>
+
+=cut
+
+has absolute => (
+    is      => 'ro',
+    isa     => \&_boolean,
+    default => sub { 0 },
+);
+
 =head2 strings
 
   $strings = $dia->strings;
@@ -559,11 +578,15 @@ sub draw {
 
                 print "Dot at $note,$string = $temp\n" if $self->verbose;
 
+                my $y = $self->absolute
+                    ? $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE
+                    : $SPACE + $SPACE / 2 + ($note - 1) * $SPACE;
+
                 $i->circle(
                     color => $self->dot_color,
                     r     => $SPACE / 5,
                     x     => $SPACE + ($self->strings - $string) * $SPACE,
-                    y     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
+                    y     => $y,
                 );
             }
 
@@ -715,11 +738,15 @@ sub _draw_horiz {
 
                 print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
 
+                my $x = $self->absolute
+                    ? $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE
+                    : $SPACE + $SPACE / 2 + ($note - 1) * $SPACE;
+
                 $i->circle(
                     color => $self->dot_color,
                     r     => $SPACE / 5,
+                    x     => $x,
                     y     => $SPACE + ($string - 1) * $SPACE,
-                    x     => $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE,
                 );
             }
 
@@ -780,6 +807,11 @@ sub _output_image {
 sub _positive_int {
     my ($arg) = @_;
     die "$arg is not a positive integer" unless $arg =~ /^[1-9]\d*$/;
+}
+
+sub _boolean {
+    my ($arg) = @_;
+    die "$arg is not a Boolean value" unless $arg =~ /^[10]$/;
 }
 
 1;
