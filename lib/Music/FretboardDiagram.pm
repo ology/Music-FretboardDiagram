@@ -93,6 +93,7 @@ Chord string examples at position 1:
   A: x02220
   B: x24442
 
+  Cm: x3101x
   Dm: xx0231
   Em: 022000
   Am: x02210
