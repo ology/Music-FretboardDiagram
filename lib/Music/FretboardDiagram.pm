@@ -546,7 +546,7 @@ sub draw {
             }
 
             if ( $note =~ /[xX]/ ) {
-                print "X at 0,$string\n" if $self->verbose;
+                warn "X at 0,$string\n" if $self->verbose;
 
                 $i->string(
                     font  => $font,
@@ -562,7 +562,7 @@ sub draw {
                 my $temp = $self->fretboard->{$string}[0];
                 push @chord, $temp;
 
-                print "O at 0,$string = $temp\n" if $self->verbose;
+                warn "O at 0,$string = $temp\n" if $self->verbose;
 
                 $i->string(
                     font  => $font,
@@ -578,7 +578,7 @@ sub draw {
                 my $temp = $self->_note_at($string, $note);
                 push @chord, $temp;
 
-                print "Dot at $note,$string = $temp\n" if $self->verbose;
+                warn "Dot at $note,$string = $temp\n" if $self->verbose;
 
                 my $y = $self->absolute
                     ? $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE
@@ -599,7 +599,7 @@ sub draw {
         # Print the chord name if requested
         if ( $self->showname ) {
             my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
-            print "Chord = $chord_name\n" if $self->verbose;
+            warn "Chord = $chord_name\n" if $self->verbose;
             $i->string(
                 font  => $font,
                 text  => $chord_name,
@@ -706,7 +706,7 @@ sub _draw_horiz {
             }
 
             if ( $note =~ /[xX]/ ) {
-                print "X at fret:0, string:$string\n" if $self->verbose;
+                warn "X at fret:0, string:$string\n" if $self->verbose;
 
                 $i->string(
                     font  => $font,
@@ -722,7 +722,7 @@ sub _draw_horiz {
                 my $temp = $self->fretboard->{$string}[0];
                 unshift @chord, $temp;
 
-                print "O at fret:0, string:$string = $temp\n" if $self->verbose;
+                warn "O at fret:0, string:$string = $temp\n" if $self->verbose;
 
                 $i->string(
                     font  => $font,
@@ -738,7 +738,7 @@ sub _draw_horiz {
                 my $temp = $self->_note_at($string, $note);
                 unshift @chord, $temp;
 
-                print "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
+                warn "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
 
                 my $x = $self->absolute
                     ? $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE
@@ -759,7 +759,7 @@ sub _draw_horiz {
         # Print the chord name if requested
         if ( $self->showname ) {
             my $chord_name = $self->showname eq '1' ? chordname(@chord) : $self->showname;
-            print "Chord = $chord_name\n" if $self->verbose;
+            warn "Chord = $chord_name\n" if $self->verbose;
             $i->string(
                 font  => $font,
                 text  => $chord_name,
