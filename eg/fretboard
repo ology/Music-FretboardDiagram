@@ -32,8 +32,6 @@ push @specs, map { _get_spec($_) } @$fingerings;
 warn ddc(\@specs);
 
 my $dia = Music::FretboardDiagram->new(
-#  chord    => 'x02220',
-#  position => 1,
   frets    => $frets,
   chord    => \@specs,
   absolute => 1,
