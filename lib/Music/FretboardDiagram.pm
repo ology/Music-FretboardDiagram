@@ -274,6 +274,7 @@ Default: C<0>
 
 has horiz => (
     is      => 'ro',
+    isa     => \&_boolean,
     default => sub { 0 },
 );
 
@@ -290,6 +291,7 @@ Default: C<0>
 
 has image => (
     is      => 'ro',
+    isa     => \&_boolean,
     default => sub { 0 },
 );
 
@@ -372,6 +374,7 @@ Default: C<0>
 
 has verbose => (
     is      => 'ro',
+    isa     => \&_boolean,
     default => sub { 0 },
 );
 
