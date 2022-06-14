@@ -1,7 +1,10 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
-    - Do not print fingering dots outside the fretboard.
+    - Do not print fingering dots outside the fretboard for vertical drawing too!
+
+0.1303 2022-06-13 20:59:37
+    - Do not print fingering dots outside the fretboard (for horizontal drawing).
 
 0.1302 2022-06-13 20:43:01
     - Make Boolean attributes have a check.
