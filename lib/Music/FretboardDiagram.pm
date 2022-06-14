@@ -456,7 +456,7 @@ sub BUILD {
 =head2 draw
 
   $dia->draw;
-  $image = $dia->draw;
+  $image = $dia->draw; # if the image attr is set
 
 Render the requested chord diagram as an image file of the given
 B<type>.
