@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.1304 2022-06-13 21:07:45
     - Do not print fingering dots outside the fretboard for vertical drawing too!
