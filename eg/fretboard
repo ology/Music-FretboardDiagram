@@ -39,7 +39,7 @@ for my $fingering (@$fingerings) {
 }
 
 @specs = sort { $a->[0] <=> $b->[0] } @specs;
-#warn __PACKAGE__,' L',__LINE__,' ',ddc(\@specs, {max_width=>128});
+#warn ddc(\@specs, {max_width=>128});
 
 my $dia = Music::FretboardDiagram->new(
 #  frets    => 6,
