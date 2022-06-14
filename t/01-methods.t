@@ -7,37 +7,40 @@ use Test::Exception;
 
 use_ok 'Music::FretboardDiagram';
 
+use constant BOGUS => 'foo';
+use constant CHORD => 'xxxxxx';
+
 subtest throws => sub {
     throws_ok {
-        Music::FretboardDiagram->new( position => 'foo' )
+        Music::FretboardDiagram->new( position => BOGUS )
     } qr/not a positive integer/, 'bogus position dies';
 
     throws_ok {
-        Music::FretboardDiagram->new( strings => 'foo' )
+        Music::FretboardDiagram->new( strings => BOGUS )
     } qr/not a positive integer/, 'bogus strings dies';
 
     throws_ok {
-        Music::FretboardDiagram->new( frets => 'foo' )
+        Music::FretboardDiagram->new( frets => BOGUS )
     } qr/not a positive integer/, 'bogus frets dies';
 
     throws_ok {
-        Music::FretboardDiagram->new( size => 'foo' )
+        Music::FretboardDiagram->new( size => BOGUS )
     } qr/not a positive integer/, 'bogus size dies';
 
     throws_ok {
-        Music::FretboardDiagram->new( horiz => 'foo' )
+        Music::FretboardDiagram->new( horiz => BOGUS )
     } qr/not a Boolean/, 'bogus horiz dies';
 
     throws_ok {
-        Music::FretboardDiagram->new( image => 'foo' )
+        Music::FretboardDiagram->new( image => BOGUS )
     } qr/not a Boolean/, 'bogus image dies';
 
     throws_ok {
-        Music::FretboardDiagram->new( verbose => 'foo' )
+        Music::FretboardDiagram->new( verbose => BOGUS )
     } qr/not a Boolean/, 'bogus verbose dies';
 
     throws_ok {
-        Music::FretboardDiagram->new( absolute => 'foo' )
+        Music::FretboardDiagram->new( absolute => BOGUS )
     } qr/not a Boolean/, 'bogus absolute dies';
 
     throws_ok {
@@ -46,9 +49,9 @@ subtest throws => sub {
 };
 
 subtest attrs => sub {
-    my $obj = new_ok 'Music::FretboardDiagram' => [ chord => 'xxxxxx' ];
+    my $obj = new_ok 'Music::FretboardDiagram' => [ chord => CHORD ];
 
-    is_deeply $obj->chord, [[1,'xxxxxx']], 'chord';
+    is_deeply $obj->chord, [[1,CHORD]], 'chord';
     is $obj->position, 1, 'position';
     is $obj->absolute, 0, 'absolute';
     is $obj->strings, 6, 'strings';
@@ -68,7 +71,7 @@ subtest attrs => sub {
 };
 
 subtest _note_at => sub {
-    my $obj = new_ok 'Music::FretboardDiagram' => [ chord => 'xxxxxx' ];
+    my $obj = new_ok 'Music::FretboardDiagram' => [ chord => CHORD ];
 
     my $note = 0;
     my $got = $obj->_note_at(1, $note);
