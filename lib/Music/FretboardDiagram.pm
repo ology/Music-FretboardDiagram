@@ -132,7 +132,7 @@ has position => (
 
 =head2 absolute
 
-  $position = $dia->absolute;
+  $absolute = $dia->absolute;
 
 Use an absolute neck position for rendering a chord on a full length
 fretboard.
