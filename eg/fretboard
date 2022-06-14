@@ -9,7 +9,7 @@ use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
 my $note   = shift || 'C3';
-my $flavor = shift || 'm';
+my $flavor = shift || '';
 my $frets  = shift || 16;
 
 my $mcg = MIDI::Chord::Guitar->new(
