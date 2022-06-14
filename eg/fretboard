@@ -8,16 +8,16 @@ use Music::FretboardDiagram;
 
 my $mcg = MIDI::Chord::Guitar->new(voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv');
 
-my $frets = 13;
+my $frets = 15;
 my @specs;
 
-my $fingerings = $mcg->fingering('E2', 'm');
+my $fingerings = $mcg->fingering('C3', 'm');
 for my $fingering (@$fingerings) {
     my ($chord, $posn) = split /-/, $fingering;
     $chord =~ s/[oO0xX]/-/g;
     push @specs, [$posn, $chord];
 }
-$fingerings = $mcg->fingering('E3', 'm');
+$fingerings = $mcg->fingering('C4', 'm');
 for my $fingering (@$fingerings) {
     my ($chord, $posn) = split /-/, $fingering;
     $chord =~ s/[oO0xX]/-/g;
@@ -26,6 +26,8 @@ for my $fingering (@$fingerings) {
 }
 
 @specs = sort { $a->[0] <=> $b->[0] } @specs;
+#use Data::Dumper::Compact qw(ddc);
+#warn __PACKAGE__,' L',__LINE__,' ',ddc(\@specs, {max_width=>128});
 
 my $dia = Music::FretboardDiagram->new(
   chord    => \@specs,
