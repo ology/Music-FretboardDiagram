@@ -35,11 +35,11 @@ for my $fingering (@$fingerings) {
 #warn __PACKAGE__,' L',__LINE__,' ',ddc(\@specs, {max_width=>128});
 
 my $dia = Music::FretboardDiagram->new(
-#  chord    => 'x02220',
-#  position => 5,
 #  frets    => 6,
-  chord    => \@specs,
+#  chord    => 'x02220',
+#  position => 1,
   frets    => $frets,
+  chord    => \@specs,
   absolute => 1,
   outfile  => 'fretboard',
   horiz    => 1,
