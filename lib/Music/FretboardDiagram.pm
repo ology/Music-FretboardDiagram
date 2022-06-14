@@ -8,6 +8,7 @@ use Moo;
 use strictures 2;
 use namespace::clean;
 
+use Carp 'croak';
 use Imager ();
 use List::SomeUtils 'first_index';
 use Music::Chord::Namer 'chordname';
@@ -433,7 +434,7 @@ sub BUILD {
     $self->chord( [ [ $self->position, $self->chord ] ] )
         unless ref $self->chord;
 
-    die 'chord length and string number differ'
+    croak 'chord length and string number differ'
         if $self->chord && length( $self->chord->[0][1] ) != $self->strings;
 
     my @scale = qw/C Db D Eb E F Gb G Ab A Bb B/;
@@ -806,17 +807,17 @@ sub _output_image {
     my ($self, $img) = @_;
     my $name = $self->outfile . '.' . $self->type;
     $img->write( type => $self->type, file => $name )
-        or die "Can't save $name: ", $img->errstr;
+        or croak "Can't save $name: ", $img->errstr;
 }
 
 sub _positive_int {
     my ($arg) = @_;
-    die "$arg is not a positive integer" unless $arg =~ /^[1-9]\d*$/;
+    croak "$arg is not a positive integer" unless $arg =~ /^[1-9]\d*$/;
 }
 
 sub _boolean {
     my ($arg) = @_;
-    die "$arg is not a Boolean value" unless $arg =~ /^[10]$/;
+    croak "$arg is not a Boolean value" unless $arg =~ /^[10]$/;
 }
 
 1;
