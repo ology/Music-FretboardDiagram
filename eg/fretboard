@@ -58,7 +58,7 @@ sub _get_spec {
 
     my ($chord, $posn) = split /-/, $fingering;
 
-    $chord =~ s/[oO0xX]/-/g;
+    $chord =~ s/[oO0xX]/-/g; # don't show open or musted strings
 
     return [ $posn, $chord ];
 }
