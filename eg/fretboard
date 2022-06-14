@@ -11,7 +11,7 @@ use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
 my $note   = shift || 'C3';
-my $flavor = shift || '';
+my $flavor = shift || ''; # m=minor, ''=major, 7=7th, etc.
 my $frets  = shift || 16;
 
 my $mcg = MIDI::Chord::Guitar->new(
