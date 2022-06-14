@@ -183,11 +183,6 @@ has frets => (
     default => sub { 5 },
 );
 
-has _frets => (
-    is       => 'ro',
-    init_arg => undef,
-);
-
 =head2 size
 
   $size = $dia->size;
@@ -451,8 +446,6 @@ sub BUILD {
         $notes{++$string} = [ map { $scale[ ($i + $_) % @scale ] } 0 .. @scale - 1 ];
     }
 
-    $self->{_frets} = $self->frets + 1;
-
     $self->{fretboard} = \%notes;
 }
 
@@ -478,12 +471,13 @@ sub draw {
 
     my $SPACE = $self->size;
 
+    my $frets = $self->frets + 1;
     my $font;
 
     # Setup a new image
     my $i = Imager->new(
         xsize => $SPACE + $self->strings * $SPACE,
-        ysize => $SPACE + $self->_frets * $SPACE,
+        ysize => $SPACE + $frets * $SPACE,
     );
     $i->box( filled => 1, color => WHITE );
 
@@ -495,7 +489,7 @@ sub draw {
     }
 
     # Draw the horizontal fret lines
-    for my $fret ( 0 .. $self->_frets - 1 ) {
+    for my $fret ( 0 .. $frets - 1 ) {
         $i->line(
             color => $self->fret_color,
             x1    => $SPACE,
@@ -525,7 +519,7 @@ sub draw {
                 r     => $SPACE / 8,
                 x     => $SPACE * $self->strings / 2 + $SPACE / 2,
                 y     => $SPACE + $fret * $SPACE + $SPACE / 2,
-            ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $self->_frets );
+            ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $frets );
         }
     }
 
@@ -536,7 +530,7 @@ sub draw {
             x1    => $SPACE + $string * $SPACE,
             y1    => $SPACE,
             x2    => $SPACE + $string * $SPACE,
-            y2    => $SPACE + ($self->_frets - 1) * $SPACE,
+            y2    => $SPACE + ($frets - 1) * $SPACE,
             aa    => 1,
             endp  => 1
         );
@@ -599,7 +593,7 @@ sub draw {
                     r     => $SPACE / 5,
                     x     => $SPACE + ($self->strings - $string) * $SPACE,
                     y     => $y,
-                ) if $y < $SPACE * $self->_frets;
+                ) if $y < $SPACE * $frets;
             }
 
             # Decrement the current string number
@@ -615,7 +609,7 @@ sub draw {
                 text  => $chord_name,
                 color => BLACK,
                 x     => $SPACE,
-                y     => ($self->_frets + 1) * $SPACE - $SPACE / 3,
+                y     => ($frets + 1) * $SPACE - $SPACE / 3,
                 size  => $SPACE / 2,
                 aa    => 1,
             );
@@ -635,12 +629,13 @@ sub _draw_horiz {
 
     my $SPACE = $self->size;
 
+    my $frets = $self->frets + 1;
     my $font;
 
     # Setup a new image
     my $i = Imager->new(
         ysize => $SPACE + $self->strings * $SPACE,
-        xsize => $SPACE + $self->_frets * $SPACE,
+        xsize => $SPACE + $frets * $SPACE,
     );
     $i->box( filled => 1, color => WHITE );
 
@@ -652,7 +647,7 @@ sub _draw_horiz {
     }
 
     # Draw the vertical fret lines
-    for my $fret ( 0 .. $self->_frets - 1 ) {
+    for my $fret ( 0 .. $frets - 1 ) {
         $i->line(
             color => $self->fret_color,
             y1    => $SPACE,
@@ -682,7 +677,7 @@ sub _draw_horiz {
                 r     => $SPACE / 8,
                 y     => $SPACE * $self->strings / 2 + $SPACE / 2,
                 x     => $SPACE + $fret * $SPACE + $SPACE / 2,
-            ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $self->_frets );
+            ) if ( $SPACE + $fret * $SPACE + $SPACE / 2 ) < ( $SPACE * $frets );
         }
     }
 
@@ -693,7 +688,7 @@ sub _draw_horiz {
             y1    => $SPACE + $string * $SPACE,
             x1    => $SPACE,
             y2    => $SPACE + $string * $SPACE,
-            x2    => $SPACE + ($self->_frets - 1) * $SPACE,
+            x2    => $SPACE + ($frets - 1) * $SPACE,
             aa    => 1,
             endp  => 1
         );
@@ -756,7 +751,7 @@ sub _draw_horiz {
                     r     => $SPACE / 5,
                     x     => $x,
                     y     => $SPACE + ($string - 1) * $SPACE,
-                ) if $x < $SPACE * $self->_frets;
+                ) if $x < $SPACE * $frets;
             }
 
             # Increment the current string number
