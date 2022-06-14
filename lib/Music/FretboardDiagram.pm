@@ -37,6 +37,7 @@ use constant TAN   => 'tan';
     size     => 50, # relative units, not pixels
     outfile  => 'fretboard',
     horiz    => 1,
+    showname => 'Em',
     verbose  => 1,
   );
 
