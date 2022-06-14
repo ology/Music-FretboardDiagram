@@ -2,11 +2,16 @@
 use strict;
 use warnings;
 
+# For author testing only:
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar);
+
 use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
-my $mcg = MIDI::Chord::Guitar->new(voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv');
+my $mcg = MIDI::Chord::Guitar->new(
+    # For author testing only:
+    voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv'
+);
 
 my $frets = 16;
 my @specs;
@@ -30,7 +35,7 @@ for my $fingering (@$fingerings) {
 #warn __PACKAGE__,' L',__LINE__,' ',ddc(\@specs, {max_width=>128});
 
 my $dia = Music::FretboardDiagram->new(
-#  chord    => '4x1444',
+#  chord    => 'x02220',
 #  position => 5,
 #  frets    => 6,
   chord    => \@specs,
