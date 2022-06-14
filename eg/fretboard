@@ -47,7 +47,7 @@ my $dia = Music::FretboardDiagram->new(
   chord    => \@specs,
   absolute => 1,
   outfile  => 'fretboard',
-#  horiz    => 1,
+  horiz    => 1,
   showname => 0,
   verbose  => 1,
 );
