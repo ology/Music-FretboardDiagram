@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Make Boolean attributes have a check.
 
 0.1301 2022-06-13 20:20:27
     - Add the eg/fretboard program.
