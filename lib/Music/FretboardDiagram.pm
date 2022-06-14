@@ -188,7 +188,7 @@ has frets => (
   $size = $dia->size;
 
 The relative size of the diagram.  The smallest visible diagram is
-B<size> = C<6>.
+B<size> = C<6>.  (This is B<not> a measure of pixels.)
 
 Default: C<30>
 
