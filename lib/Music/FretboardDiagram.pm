@@ -593,7 +593,7 @@ sub draw {
                     r     => $SPACE / 5,
                     x     => $SPACE + ($self->strings - $string) * $SPACE,
                     y     => $y,
-                );
+                ) if $y < $SPACE * $self->frets;
             }
 
             # Decrement the current string number
