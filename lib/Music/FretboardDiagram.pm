@@ -78,8 +78,7 @@ specifications.
 
 For a chord string, non-zero digits represent frets, C<x> (or C<X>)
 indicates a muted string, C<0> (or C<o> or C<O>) indicates an open
-string, and a dash (C<->) means skip to the next string.  The default
-order of the strings is C<654321> from lowest to highest.
+string, and a dash (C<->) means skip to the next string.
 
 For an array-ref of chord specifications, the first element is the
 chord position, and the second is the chord string.
