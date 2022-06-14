@@ -15,7 +15,7 @@ my $note   = shift || 'C3'; # a note in ISO format: <name><octave>
 my $flavor = shift || '';   # chord: 'm'=minor, ''=major, '7'=7th, etc.
 my $frets  = shift || 16;   # number of frets to display
 
-(my $name = $note) =~ s/^([A-G][b#]?)\d+/$1/;
+(my $name = $note) =~ s/^([A-G][b#]?)\d+$/$1/;
 
 my $mcg = MIDI::Chord::Guitar->new(
     # For author testing only:
