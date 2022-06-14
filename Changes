@@ -1,6 +1,8 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+
+0.1301 2022-06-13 20:20:27
     - Add the eg/fretboard program.
     - Add an absolute attribute to specify where to render a chord.
 
