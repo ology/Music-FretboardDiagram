@@ -34,6 +34,7 @@ subtest attrs => sub {
 
     is_deeply $obj->chord, [[1,'xxxxxx']], 'chord';
     is $obj->position, 1, 'position';
+    is $obj->absolute, 0, 'absolute';
     is $obj->strings, 6, 'strings';
     is $obj->frets, 5, 'frets';
     is $obj->size, 30, 'size';
