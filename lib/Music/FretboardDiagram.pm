@@ -25,7 +25,6 @@ use constant TAN   => 'tan';
     chord    => 'xx0232',
     frets    => 5,     # the default
     position => 1,     # the default
-    font     => '/path/to/TTF/font.ttf',
     outfile  => 'Dm',
     type     => 'png', # the default
   );
@@ -38,6 +37,7 @@ use constant TAN   => 'tan';
     outfile  => 'fretboard',
     horiz    => 1,
     showname => 'Em',
+    font     => '/path/to/TTF/font.ttf',
     verbose  => 1,
   );
 
