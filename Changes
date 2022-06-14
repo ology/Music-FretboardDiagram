@@ -4,6 +4,7 @@ Revision history for Music-FretboardDiagram
 
 0.1305 2022-06-13 22:10:04
     - Improve documentation.
+    - Use croak not die.
 
 0.1304 2022-06-13 21:07:45
     - Do not print fingering dots outside the fretboard for vertical drawing too!
