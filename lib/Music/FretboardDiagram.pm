@@ -356,8 +356,8 @@ has dot_color => (
 Show a chord name or not.
 
 Sometimes the computed chord name is not accurate or desired.  In
-those cases, either set the B<showname> to a string of your choosing
-before drawing, or to C<0> for no chord name.
+those cases, either set the B<showname> to a string of your choosing,
+or to C<0> for no chord name.
 
 Default: C<1>
 
