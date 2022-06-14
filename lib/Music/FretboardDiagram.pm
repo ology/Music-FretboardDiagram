@@ -12,6 +12,10 @@ use Imager ();
 use List::SomeUtils 'first_index';
 use Music::Chord::Namer 'chordname';
 
+use constant WHITE => 'white';
+use constant BLACK => 'black';
+use constant TAN   => 'tan';
+
 =head1 SYNOPSIS
 
   use Music::FretboardDiagram;
@@ -466,9 +470,6 @@ sub draw {
         return $self->_draw_horiz;
     }
 
-    my $WHITE = 'white';
-    my $BLACK = 'black';
-    my $TAN   = 'tan';
     my $SPACE = $self->size;
 
     my $font;
@@ -478,7 +479,7 @@ sub draw {
         xsize => $SPACE + $self->strings * $SPACE,
         ysize => $SPACE + $self->frets * $SPACE,
     );
-    $i->box( filled => 1, color => $WHITE );
+    $i->box( filled => 1, color => WHITE );
 
     if ( -e $self->font ) {
         $font = Imager::Font->new( file => $self->font );
@@ -504,7 +505,7 @@ sub draw {
             $i->string(
                 font  => $font,
                 text  => $self->position,
-                color => $BLACK,
+                color => BLACK,
                 x     => $SPACE / 4,
                 y     => $SPACE * 2 + $SPACE / 4,
                 size  => $SPACE / 2,
@@ -514,7 +515,7 @@ sub draw {
 
         if ( $self->_fret_match($fret) ) {
             $i->circle(
-                color => $TAN,
+                color => TAN,
                 r     => $SPACE / 8,
                 x     => $SPACE * $self->strings / 2 + $SPACE / 2,
                 y     => $SPACE + $fret * $SPACE + $SPACE / 2,
@@ -554,7 +555,7 @@ sub draw {
                 $i->string(
                     font  => $font,
                     text  => 'X',
-                    color => $BLACK,
+                    color => BLACK,
                     x     => $SPACE + ($self->strings - $string) * $SPACE - $SPACE / 6,
                     y     => $SPACE - 2,
                     size  => $SPACE / 2,
@@ -570,7 +571,7 @@ sub draw {
                 $i->string(
                     font  => $font,
                     text  => 'O',
-                    color => $BLACK,
+                    color => BLACK,
                     x     => $SPACE + ($self->strings - $string) * $SPACE - $SPACE / 6,
                     y     => $SPACE - 2,
                     size  => $SPACE / 2,
@@ -606,7 +607,7 @@ sub draw {
             $i->string(
                 font  => $font,
                 text  => $chord_name,
-                color => $BLACK,
+                color => BLACK,
                 x     => $SPACE,
                 y     => ($self->frets + 1) * $SPACE - $SPACE / 3,
                 size  => $SPACE / 2,
@@ -626,9 +627,6 @@ sub draw {
 sub _draw_horiz {
     my ($self) = @_;
 
-    my $WHITE = 'white';
-    my $BLACK = 'black';
-    my $TAN   = 'tan';
     my $SPACE = $self->size;
 
     my $font;
@@ -638,7 +636,7 @@ sub _draw_horiz {
         ysize => $SPACE + $self->strings * $SPACE,
         xsize => $SPACE + $self->frets * $SPACE,
     );
-    $i->box( filled => 1, color => $WHITE );
+    $i->box( filled => 1, color => WHITE );
 
     if ( -e $self->font ) {
         $font = Imager::Font->new( file => $self->font );
@@ -664,7 +662,7 @@ sub _draw_horiz {
             $i->string(
                 font  => $font,
                 text  => $self->position,
-                color => $BLACK,
+                color => BLACK,
                 y     => $SPACE / 2 + $SPACE / 5,
                 x     => $SPACE * 2 - $SPACE / 5,
                 size  => $SPACE / 2,
@@ -674,7 +672,7 @@ sub _draw_horiz {
 
         if ( $self->_fret_match($fret) ) {
             $i->circle(
-                color => $TAN,
+                color => TAN,
                 r     => $SPACE / 8,
                 y     => $SPACE * $self->strings / 2 + $SPACE / 2,
                 x     => $SPACE + $fret * $SPACE + $SPACE / 2,
@@ -714,7 +712,7 @@ sub _draw_horiz {
                 $i->string(
                     font  => $font,
                     text  => 'X',
-                    color => $BLACK,
+                    color => BLACK,
                     y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
                     x     => $SPACE - $SPACE / 2,
                     size  => $SPACE / 2,
@@ -730,7 +728,7 @@ sub _draw_horiz {
                 $i->string(
                     font  => $font,
                     text  => 'O',
-                    color => $BLACK,
+                    color => BLACK,
                     y     => $SPACE + ($string - 1) * $SPACE + $SPACE / 4,
                     x     => $SPACE - $SPACE / 2,
                     size  => $SPACE / 2,
@@ -766,7 +764,7 @@ sub _draw_horiz {
             $i->string(
                 font  => $font,
                 text  => $chord_name,
-                color => $BLACK,
+                color => BLACK,
                 x     => $SPACE,
                 y     => ($self->strings + 1) * $SPACE - $SPACE / 3,
                 size  => $SPACE / 2,
