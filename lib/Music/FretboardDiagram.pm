@@ -25,7 +25,7 @@ use constant TAN   => 'tan';
     chord    => 'xx0232',
     frets    => 5,     # the default
     position => 1,     # the default
-    outfile  => 'Dm',
+    outfile  => 'D',
     type     => 'png', # the default
   );
 
