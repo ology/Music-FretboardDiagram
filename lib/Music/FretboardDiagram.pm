@@ -750,7 +750,7 @@ sub _draw_horiz {
                     r     => $SPACE / 5,
                     x     => $x,
                     y     => $SPACE + ($string - 1) * $SPACE,
-                );
+                ) if $x < $SPACE * $self->frets;
             }
 
             # Increment the current string number
