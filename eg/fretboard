@@ -12,7 +12,7 @@ use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
 my $note   = shift || 'C3';
-my $flavor = shift || ''; # m=minor, ''=major, 7=7th, etc.
+my $flavor = shift || ''; # 'm'=minor, ''=major, '7'=7th, etc.
 my $frets  = shift || 16;
 
 (my $name = $note) =~ s/^([A-G][b#]?)\d+/$1/;
