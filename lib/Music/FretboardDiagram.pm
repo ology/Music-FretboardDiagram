@@ -17,19 +17,21 @@ use Music::Chord::Namer 'chordname';
   use Music::FretboardDiagram;
 
   my $dia = Music::FretboardDiagram->new(
-    chord   => 'xx0232',
-    frets   => 1,
-    outfile => 'Dm',
-    font    => '/path/to/TTF/font.ttf',
+    chord    => 'xx0232',
+    frets    => 5,     # the default
+    position => 1,     # the default
+    font     => '/path/to/TTF/font.ttf',
+    outfile  => 'Dm',
+    type     => 'png', # the default
   );
 
   $dia = Music::FretboardDiagram->new(
-    chord   => [[1,'022000'], [2,'--1342'], [7,'-13321']], # Em chords
-    frets   => 13,
-    outfile => 'fretboard',
-    font    => '/path/to/TTF/font.ttf',
-    horiz   => 1,
-    verbose => 1,
+    chord    => [[1,'022000'], [2,'--1342'], [7,'-13321']], # Em chords
+    frets    => 13,
+    absolute => 1,
+    outfile  => 'fretboard',
+    horiz    => 1,
+    verbose  => 1,
   );
 
   $dia->chord('xx0232');          # set a new chord
