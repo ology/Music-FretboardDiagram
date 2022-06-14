@@ -70,8 +70,6 @@ subtest attrs => sub {
 subtest _note_at => sub {
     my $obj = new_ok 'Music::FretboardDiagram' => [ chord => 'xxxxxx' ];
 
-    can_ok $obj, 'draw';
-
     my $note = 0;
     my $got = $obj->_note_at(1, $note);
     is $got, 'E', 'open E';
