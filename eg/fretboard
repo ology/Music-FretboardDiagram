@@ -5,7 +5,7 @@ use warnings;
 # Show two octaves of a chord on a full-length fretboard.
 
 # For author testing only:
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar Music-FretboardDiagram);
+#use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar Music-FretboardDiagram);
 
 use Data::Dumper::Compact qw(ddc);
 use MIDI::Chord::Guitar;
@@ -19,7 +19,7 @@ my $frets  = shift || 16;   # number of frets to display
 
 my $mcg = MIDI::Chord::Guitar->new(
     # For author testing only:
-    voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv'
+    #voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv'
 );
 
 my $fingerings = $mcg->fingering($note, $flavor);
