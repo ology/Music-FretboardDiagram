@@ -11,9 +11,9 @@ use Data::Dumper::Compact qw(ddc);
 use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
-my $note   = shift || 'C3';
-my $flavor = shift || ''; # 'm'=minor, ''=major, '7'=7th, etc.
-my $frets  = shift || 16;
+my $note   = shift || 'C3'; # a note in ISO format: <name><octave>
+my $flavor = shift || '';   # chord: 'm'=minor, ''=major, '7'=7th, etc.
+my $frets  = shift || 16;   # number of frets to display
 
 (my $name = $note) =~ s/^([A-G][b#]?)\d+/$1/;
 
@@ -26,16 +26,13 @@ my @specs;
 
 my $fingerings = $mcg->fingering($note, $flavor);
 for my $fingering (@$fingerings) {
-    my ($chord, $posn) = split /-/, $fingering;
-    $chord =~ s/[oO0xX]/-/g;
-    push @specs, [$posn, $chord];
+    my $spec = _get_spec($fingering);
+    push @specs, $spec;
 }
 $fingerings = $mcg->fingering(++$note, $flavor);
 for my $fingering (@$fingerings) {
-    my ($chord, $posn) = split /-/, $fingering;
-    $chord =~ s/[oO0xX]/-/g;
-    push @specs, [$posn, $chord]
-        if $posn < $frets - 1;
+    my $spec = _get_spec($fingering);
+    push @specs, $spec;
 }
 
 @specs = sort { $a->[0] <=> $b->[0] } @specs;
@@ -55,3 +52,13 @@ my $dia = Music::FretboardDiagram->new(
 );
 
 $dia->draw;
+
+sub _get_spec {
+    my ($fingering) = @_;
+
+    my ($chord, $posn) = split /-/, $fingering;
+
+    $chord =~ s/[oO0xX]/-/g;
+
+    return [ $posn, $chord ];
+}
