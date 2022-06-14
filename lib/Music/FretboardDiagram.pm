@@ -33,6 +33,7 @@ use constant TAN   => 'tan';
     chord    => [[1,'022000'], [2,'--1342'], [7,'-13321']], # Em chords
     frets    => 13,
     absolute => 1,
+    size     => 50, # relative units, not pixels
     outfile  => 'fretboard',
     horiz    => 1,
     verbose  => 1,
@@ -189,7 +190,8 @@ has frets => (
 
   $size = $dia->size;
 
-The relative size of the diagram.
+The relative size of the diagram.  The smallest visible diagram is
+B<size> = C<6>.
 
 Default: C<30>
 
