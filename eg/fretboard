@@ -8,7 +8,7 @@ use Music::FretboardDiagram;
 
 my $mcg = MIDI::Chord::Guitar->new(voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv');
 
-my $frets = 15;
+my $frets = 16;
 my @specs;
 
 my $fingerings = $mcg->fingering('C3', 'm');
@@ -30,8 +30,12 @@ for my $fingering (@$fingerings) {
 #warn __PACKAGE__,' L',__LINE__,' ',ddc(\@specs, {max_width=>128});
 
 my $dia = Music::FretboardDiagram->new(
+#  chord    => '4x1444',
+#  position => 5,
+#  frets    => 6,
   chord    => \@specs,
   frets    => $frets,
+  absolute => 1,
   outfile  => 'fretboard',
   horiz    => 1,
   showname => 0,
