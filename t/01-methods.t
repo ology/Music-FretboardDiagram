@@ -97,4 +97,13 @@ subtest _note_at => sub {
     is $got, 'F', '25th fret F';
 };
 
+subtest image => sub {
+    my $obj = new_ok 'Music::FretboardDiagram' => [
+        chord => CHORD,
+        image => 1,
+    ];
+    my $got = $obj->draw;
+    isa_ok $got, 'Imager', 'returned image';
+};
+
 done_testing();
