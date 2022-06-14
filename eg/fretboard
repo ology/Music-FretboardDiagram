@@ -3,20 +3,20 @@ use strict;
 use warnings;
 
 # For author testing only:
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar);
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar Music-FretboardDiagram);
 
 use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
 my $note   = shift || 'C3';
 my $flavor = shift || 'm';
+my $frets  = shift || 16;
 
 my $mcg = MIDI::Chord::Guitar->new(
     # For author testing only:
     voicing_file => '/home/gene/sandbox/MIDI-Chord-Guitar/share/midi-guitar-chord-voicings.csv'
 );
 
-my $frets = 16;
 my @specs;
 
 my $fingerings = $mcg->fingering($note, $flavor);
