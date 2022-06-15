@@ -11,6 +11,8 @@ use Data::Dumper::Compact qw(ddc);
 use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
 
+use constant MINOR => 'm';
+
 my $note  = shift || 'C'; # a note name with no octave
 my $frets = shift || 16;  # number of frets to display
 
@@ -41,7 +43,7 @@ my $mcg = MIDI::Chord::Guitar->new(
 my @specs = ();
 my $dia;
 
-for my $spec ([$note, $octave, ''], [$relative, $r_octave, 'm']) {
+for my $spec ([$note, $octave, ''], [$relative, $r_octave, MINOR]) {
     my ($n, $o, $f) = @$spec; # note, octave, flavor
 
     my $fingerings = $mcg->fingering($n . $o, $f);
@@ -61,7 +63,7 @@ $dia = Music::FretboardDiagram->new(
     outfile  => $0,
     horiz    => 1,
     size     => 50,
-    showname => "$note + $relative" . 'm',
+    showname => "$note + $relative" . MINOR,
 #    verbose  => 1,
 );
 
