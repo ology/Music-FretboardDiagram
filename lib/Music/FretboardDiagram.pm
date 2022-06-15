@@ -593,7 +593,7 @@ sub draw {
                     r     => $SPACE / 5,
                     x     => $SPACE + ($self->strings - $string) * $SPACE,
                     y     => $y,
-                ) if $y < $SPACE * $frets;
+                ) if $y > $SPACE && $y < $SPACE * $frets;
             }
 
             # Decrement the current string number
@@ -751,7 +751,7 @@ sub _draw_horiz {
                     r     => $SPACE / 5,
                     x     => $x,
                     y     => $SPACE + ($string - 1) * $SPACE,
-                ) if $x < $SPACE * $frets;
+                ) if $x > $SPACE && $x < $SPACE * $frets;
             }
 
             # Increment the current string number
