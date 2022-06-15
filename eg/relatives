@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-# Show the major and relative minor over two octaves of a fretboard.
+# Show major and relative minor over two octaves of a fretboard.
 
 # For author testing only:
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar Music-FretboardDiagram);
@@ -16,6 +16,7 @@ use constant MINOR => 'm';
 my $note  = shift || 'C'; # a note name with no octave
 my $frets = shift || 16;  # number of frets to display
 
+# Sure, this could be computed...
 my %relative_minor = ( # and starting octave
     C  => { rel => 'A',  oct => 3 },
     Db => { rel => 'Bb', oct => 3 },
