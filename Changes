@@ -2,6 +2,7 @@ Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
     - Don't draw dots before the fretboard please.
+    - Add the eg/relatives program to show major/relative-minor.
 
 0.1307 2022-06-14 00:09:07
     - Improve the eg/fretboard program a bit more.
