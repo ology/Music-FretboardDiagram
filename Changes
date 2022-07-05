@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Arrgh! Fix args in the modes program!
+
+0.1310 2022-07-05 14:56:15
     - Whoops. Fix the diagram rendering in the modes program.
 
 0.1309 2022-07-05 14:48:58
