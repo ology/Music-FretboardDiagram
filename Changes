@@ -2,6 +2,7 @@ Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
     - Fix dot-fretboard bounds condition.
+    - Add the eg modes program to render each mode in 2-octaves.
 
 0.1308 2022-06-14 18:22:28
     - Don't draw dots before the fretboard please.
