@@ -68,12 +68,12 @@ set($settings, 'F-mode-07', 'E locrian',
       [12, '44444-'], ]
 );
 
-my $dia = Music::FretboardDiagram->new($settings);
-$dia->draw;
 
 sub set {
     my ($set, $file, $name, $chords) = @_;
+    my $dia = Music::FretboardDiagram->new($settings);
     $set->{outfile} = $file;
     $set->{showname} = $name;
     $set->{chord} = $chords;
+    $dia->draw;
 }
