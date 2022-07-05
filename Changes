@@ -1,6 +1,9 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Whoops. Fix the diagram rendering in the modes program.
+
+0.1309 2022-07-05 14:48:58
     - Fix dot-fretboard bounds condition.
     - Add the eg modes program to render each mode in 2-octaves.
 
