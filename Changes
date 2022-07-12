@@ -1,6 +1,7 @@
 Revision history for Music-FretboardDiagram
 
 {{$NEXT}}
+    - Add the eg/d-based program to illustrate combinatorial naming.
 
 0.1312 2022-07-05 16:08:11
     - Wow. Fix diagramming logic in eg/modes yet again. :\
