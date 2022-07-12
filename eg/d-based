@@ -25,7 +25,6 @@ while (my $v = $iter->next) {
     my $string = join '', @$v;
     push @specs, [ 1, 'xx0' . $string ];
 }
-warn ddc(\@specs);
 
 my $i = 0;
 
