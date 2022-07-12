@@ -20,7 +20,7 @@ my $mcg = MIDI::Chord::Guitar->new(
 );
 
 my @specs;
-my $iter = variations_with_repetition([0 .. 4], 3);
+my $iter = variations_with_repetition([0 .. $frets - 1], 3);
 while (my $v = $iter->next) {
     my $string = join '', @$v;
     push @specs, [ 1, 'xx0' . $string ];
