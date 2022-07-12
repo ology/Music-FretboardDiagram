@@ -849,4 +849,8 @@ For a B<real> chord analyzer:
 
 L<https://www.oolimo.com/guitarchords/analyze>
 
+Or maybe:
+
+L<https://www.scales-chords.com/chord-namer/guitar>
+
 =cut
