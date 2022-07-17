@@ -106,4 +106,15 @@ subtest image => sub {
     isa_ok $got, 'Imager', 'returned image';
 };
 
+subtest spec_to_notes => sub {
+    my $obj = new_ok 'Music::FretboardDiagram' => [ chord => CHORD ];
+    my $got = $obj->spec_to_notes($obj->chord->[0][1]);
+    my $expect = [];
+    is_deeply $got, $expect, 'spec_to_notes';
+
+    $got = $obj->spec_to_notes('x02220');  # [A E A Db E]
+    $expect = [qw(A E A Db E)];
+    is_deeply $got, $expect, 'spec_to_notes';
+};
+
 done_testing();
