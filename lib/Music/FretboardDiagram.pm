@@ -48,6 +48,8 @@ use constant TAN   => 'tan';
 
   $dia->draw;
 
+  $dia->spec_to_notes('x02220');  # [A E A Db E]
+
 =head1 DESCRIPTION
 
 A C<Music::FretboardDiagram> object draws fretboard chord diagrams
@@ -816,6 +818,35 @@ sub _positive_int {
 sub _boolean {
     my ($arg) = @_;
     croak "$arg is not a Boolean value" unless $arg =~ /^[10]$/;
+}
+
+sub spec_to_notes {
+    my ($self, $spec) = @_;
+
+    my @notes;
+
+    croak 'chord length and string number differ'
+        if length $spec != $self->strings;
+
+    my $string = $self->strings;
+
+    for my $n (split //, $spec) {
+        if ($n eq 'x' || $n eq 'X') {
+            $string--;
+            next;
+        }
+
+        if ( $n =~ /[oO0]/ ) {
+            push @notes, $self->fretboard->{$string}[0];
+        }
+        else {
+            push @notes, $self->_note_at($string, $n);
+        }
+
+        $string--;
+    }
+
+    return \@notes;
 }
 
 1;
