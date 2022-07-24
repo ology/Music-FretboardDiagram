@@ -506,7 +506,7 @@ sub draw {
         if ( $fret == 1 ) {
             $i->string(
                 font  => $font,
-                text  => $self->position,
+                text  => $self->chord->[0][0],
                 color => BLACK,
                 x     => $SPACE / 4,
                 y     => $SPACE * 2 + $SPACE / 4,
