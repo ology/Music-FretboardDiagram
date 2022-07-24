@@ -115,6 +115,11 @@ subtest spec_to_notes => sub {
     $got = $obj->spec_to_notes('x02220');  # [A E A Db E]
     $expect = [qw(A E A Db E)];
     is_deeply $got, $expect, 'spec_to_notes';
+
+    $obj->position(2);
+    $got = $obj->spec_to_notes('x02220');  # [A E A Db E]
+    $expect = [qw(A F Bb D E)];
+    is_deeply $got, $expect, 'spec_to_notes';
 };
 
 done_testing();
