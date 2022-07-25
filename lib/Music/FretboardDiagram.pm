@@ -664,7 +664,7 @@ sub _draw_horiz {
         if ( $fret == 1 ) {
             $i->string(
                 font  => $font,
-                text  => $self->position,
+                text  => $self->chord->[0][0],
                 color => BLACK,
                 y     => $SPACE / 2 + $SPACE / 5,
                 x     => $SPACE * 2 - $SPACE / 5,
