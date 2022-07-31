@@ -581,7 +581,7 @@ sub draw {
                 );
             }
             else {
-                my $temp = $self->_note_at($string, $note);
+                my $temp = $self->_note_at($posn, $string, $note);
                 push @chord, $temp;
 
                 warn "Dot at $note,$string = $temp\n" if $self->verbose;
@@ -710,7 +710,7 @@ sub _draw_horiz {
             }
 
             if ( $note =~ /[xX]/ ) {
-                warn "X at fret:0, string:$string\n" if $self->verbose;
+                warn "X at posn: $posn, fret:0, string:$string\n" if $self->verbose;
 
                 $i->string(
                     font  => $font,
@@ -726,7 +726,7 @@ sub _draw_horiz {
                 my $temp = $self->fretboard->{$string}[0];
                 unshift @chord, $temp;
 
-                warn "O at fret:0, string:$string = $temp\n" if $self->verbose;
+                warn "O at posn: $posn, fret:0, string:$string = $temp\n" if $self->verbose;
 
                 $i->string(
                     font  => $font,
@@ -739,10 +739,10 @@ sub _draw_horiz {
                 );
             }
             else {
-                my $temp = $self->_note_at($string, $note);
+                my $temp = $self->_note_at($posn, $string, $note);
                 unshift @chord, $temp;
 
-                warn "Dot at fret:$note, string:$string = $temp\n" if $self->verbose;
+                warn "Dot at posn: $posn, fret:$note, string:$string = $temp\n" if $self->verbose;
 
                 my $x = $self->absolute
                     ? $SPACE + $SPACE / 2 + ($posn - 1 + $note - 1) * $SPACE
@@ -799,8 +799,8 @@ sub _fret_match {
 }
 
 sub _note_at {
-    my ($self, $string, $n) = @_;
-    return $self->fretboard->{$string}[ ($self->position + $n - 1) % @{ $self->fretboard->{1} } ];
+    my ($self, $posn, $string, $n) = @_;
+    return $self->fretboard->{$string}[ ($posn + $n - 1) % @{ $self->fretboard->{1} } ];
 }
 
 sub _output_image {
@@ -840,7 +840,7 @@ sub spec_to_notes {
             push @notes, $self->fretboard->{$string}[0];
         }
         else {
-            push @notes, $self->_note_at($string, $n);
+            push @notes, $self->_note_at($self->position, $string, $n);
         }
 
         $string--;

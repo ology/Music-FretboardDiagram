@@ -74,26 +74,27 @@ subtest _note_at => sub {
     my $obj = new_ok 'Music::FretboardDiagram' => [ chord => CHORD ];
 
     my $note = 0;
-    my $got = $obj->_note_at(1, $note);
+    my $posn = $obj->position;
+    my $got = $obj->_note_at($posn, 1, $note);
     is $got, 'E', 'open E';
     $note = 1;
-    $got = $obj->_note_at(1, $note);
+    $got = $obj->_note_at($posn, 1, $note);
     is $got, 'F', '1st fret F';
 
     $note = 0;
-    $obj->position(13);
-    $got = $obj->_note_at(1, $note);
+    $posn = 13;
+    $got = $obj->_note_at($posn, 1, $note);
     is $got, 'E', '12th fret E';
     $note = 1;
-    $got = $obj->_note_at(1, $note);
+    $got = $obj->_note_at($posn, 1, $note);
     is $got, 'F', '13th fret F';
 
     $note = 0;
-    $obj->position(25);
-    $got = $obj->_note_at(1, $note);
+    $posn = 25;
+    $got = $obj->_note_at($posn, 1, $note);
     is $got, 'E', '24th fret E';
     $note = 1;
-    $got = $obj->_note_at(1, $note);
+    $got = $obj->_note_at($posn, 1, $note);
     is $got, 'F', '25th fret F';
 };
 
