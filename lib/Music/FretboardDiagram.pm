@@ -827,6 +827,14 @@ sub _boolean {
     croak "$arg is not a Boolean value" unless $arg =~ /^[10]$/;
 }
 
+=head2 spec_to_notes
+
+  $notes = $dia->spec_to_notes('x02220'); # A E A Db E
+
+Convert a "spec string" to a list of named notes.
+
+=cut
+
 sub spec_to_notes {
     my ($self, $spec) = @_;
 
