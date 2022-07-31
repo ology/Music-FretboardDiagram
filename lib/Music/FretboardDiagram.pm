@@ -565,7 +565,7 @@ sub draw {
                 );
             }
             elsif ( $note =~ /[oO0]/ ) {
-                my $temp = $self->fretboard->{$string}[0];
+                my $temp = $self->_note_at(0, $string, $note);
                 push @chord, $temp;
 
                 warn "O at 0,$string = $temp\n" if $self->verbose;
@@ -723,7 +723,7 @@ sub _draw_horiz {
                 );
             }
             elsif ( $note =~ /[oO0]/ ) {
-                my $temp = $self->fretboard->{$string}[0];
+                my $temp = $self->_note_at(0, $string, $note);
                 unshift @chord, $temp;
 
                 warn "O at posn: $posn, fret:0, string:$string = $temp\n" if $self->verbose;
@@ -800,7 +800,14 @@ sub _fret_match {
 
 sub _note_at {
     my ($self, $posn, $string, $n) = @_;
-    return $self->fretboard->{$string}[ ($posn + $n - 1) % @{ $self->fretboard->{1} } ];
+    my $i;
+    if ($posn) {
+        $i = ($posn + $n - 1) % @{ $self->fretboard->{1} };
+    }
+    else {
+        $i = 0;
+    }
+    return $self->fretboard->{$string}[$i];
 }
 
 sub _output_image {
@@ -837,7 +844,7 @@ sub spec_to_notes {
         }
 
         if ( $n =~ /[oO0]/ ) {
-            push @notes, $self->fretboard->{$string}[0];
+            push @notes, $self->_note_at(0, $string, $n);
         }
         else {
             push @notes, $self->_note_at($self->position, $string, $n);
