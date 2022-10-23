@@ -6,12 +6,13 @@ our $VERSION = '0.1315';
 
 use Moo;
 use strictures 2;
-use namespace::clean;
 
 use Carp 'croak';
 use Imager ();
 use List::SomeUtils 'first_index';
 use Music::Chord::Namer 'chordname';
+
+use namespace::clean;
 
 use constant WHITE => 'white';
 use constant BLACK => 'black';
