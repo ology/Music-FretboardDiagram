@@ -5,7 +5,7 @@ use warnings;
 # Show 2-octave scales by mode
 
 # For author testing only:
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-FretboardDiagram);
+use if $ENV{USER} eq "gene", lib => map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-FretboardDiagram);
 
 use Music::FretboardDiagram;
 
