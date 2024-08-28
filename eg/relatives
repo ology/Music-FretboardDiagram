@@ -5,8 +5,7 @@ use warnings;
 # Show major and relative minor over two octaves of a fretboard.
 
 # For author testing only:
-#use if $ENV{USER} eq "gene", lib => map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Chord-Guitar Music-FretboardDiagram);
-
+#
 use Data::Dumper::Compact qw(ddc);
 use MIDI::Chord::Guitar;
 use Music::FretboardDiagram;
